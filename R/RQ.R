@@ -3,6 +3,7 @@ RQ <- function(nh, g, idev=3)
     require(minpack.lm)
     require(RSEIS)
     require(GEOmap)
+    ##   require(Rquake)
 
     if(is.null(nh$sta))
       {
@@ -12,7 +13,9 @@ RQ <- function(nh, g, idev=3)
 
     if(is.null(nh$vel))
       {
-        data(fuj1.vel)
+        
+        fuj1.vel = defaultVEL(1)
+        ##  data(fuj1.vel)
         nh$vel = fuj1.vel
       }
 
@@ -21,14 +24,32 @@ RQ <- function(nh, g, idev=3)
         print("RQ: no pickfile....converting")
         if(is.null(g$WPX) )invisible(list(global.vars=g))
         twpx = g$WPX
-         twpx = Y2Pphase(twpx)
+        nona = is.na(twpx$tag)
+        
+        if(any(nona))
+          {
+            
+            twpx =  deleteWPX(twpx, which(nona))
+          }
+
+        uphase = unique( twpx$phase )
+        
+        if( any( "G" %in% uphase ) )
+          {
+            
+            twpx = Y2Pphase(twpx, "G" )
+
+          }
+
+        if( any( "Y" %in% uphase ) )
+          {
+            
+            twpx = Y2Pphase(twpx, "Y" )
+
+          }
 
         
-        nona = !is.na(twpx$tag)
 
-        twpx = twpx[nona,]
-
-        twpx = as.list(twpx)
         
         A1T = rangedatetime(twpx)
         s1 = secdifL(A1T$min,  twpx)
@@ -39,7 +60,7 @@ RQ <- function(nh, g, idev=3)
     
     dev.set(dev.next() )
     
-    eqsol = NLSlocate(nh, v=nh$vel,  PLOT=TRUE )
+    eqsol = NLSlocate(nh, vel=nh$vel,  PLOT=TRUE )
     dev.set( g$MAINdev)
 
     g$zloc = list(x=NULL, y=NULL)

@@ -1,18 +1,28 @@
 viewCHAC <-
-function( DBnov , gstas, gcomps,sched, stas, buts='GPIX', replot=TRUE , kind=2, Iendian=1, BIGLONG=FALSE)
+function( DBnov , gstas, gcomps,sched, stas, buts='GPIX', preFILT=list() , replot=TRUE , kind=2, Iendian=1, BIGLONG=FALSE)
   {
+
+    
    if(missing(buts))
      {
-       buts = c("fspread", "ReSet")
+       buts = c("fspread", "ReSet", "SGRAM")
+
+     }
+   if(missing(preFILT))
+     {
+       preFILT = list(ON=FALSE, fl=1/2 , fh=8, type="BP", proto="BU")
+
 
      }
 
+   screens(2)
+   dev.set(2)
 
    IDB = infoDB(DBnov)
    
    BUTLAB = c("REPLOT", "DONE",  "PREV", "HALF", "PSEL", 
      "ZOOM.out", "ZOOM.in", "RESTORE", "Pinfo", 
-     "FILT", "UNFILT", "GPIX", "SavePF", "RQ" , "CONTPF", "PickWin",
+     "FILT", "UNFILT", "GPIX", "SavePF", "SaveCSV",  "RQ" , "CONTPF", "PickWin",
      "Postscript")
 
     NSCHED = length(sched)
@@ -32,7 +42,7 @@ function( DBnov , gstas, gcomps,sched, stas, buts='GPIX', replot=TRUE , kind=2, 
      ##   GH$pickfile = PF
      ##   GH$vel = vel
         
-        ## FH = FILT.SEISN(GH,  FILT=preFILT, TAPER=0.1, POSTTAPER=0.1)
+        if(preFILT$ON==TRUE) GH = FILT.SEISN(GH,  FILT=preFILT, TAPER=0.1, POSTTAPER=0.1)
 
         hord = which(GH$COMPS=="V")
 

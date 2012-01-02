@@ -31,7 +31,7 @@ function(PF, stas=NULL, sol=NULL, format=0 )
       }
 
     dout = c(upf$LOC$yr, upf$LOC$jd, upf$LOC$hr, upf$LOC$mi,  upf$LOC$sec)
-    fout1 = filedatetime(dout, 0)
+    fout1 = PCfiledatetime(dout, 0)
     foutp = paste(fout1,"uwpf", sep="." )
     upf$filename =   foutp
     output=upf$filename

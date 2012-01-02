@@ -1,8 +1,8 @@
-Y2Pphase<-function(twpx)
+Y2Pphase<-function(twpx, phase)
   {
-    ##  convert all Y phases to P
-    ##  if there are P and Y picks for the same station, use P, discard Y
-    WY  = which(twpx$phase=="Y")
+    ##  convert all named  phases to P
+    ##  if there are P and other  picks for the same station, use P, discard other
+    WY  = which(twpx$phase==phase)
     if(length(WY)<1)  return(twpx)
         WP  = which(twpx$phase=="P")
     if(length(WP)>0)
@@ -12,7 +12,7 @@ Y2Pphase<-function(twpx)
        if(length(wrid)>0)
          {
            twpx =   deleteWPX(twpx,wrid )
-           WY  = which(twpx$phase=="Y")
+           WY  = which(twpx$phase==phase)
            twpx$phase[WY]  = "P"
          }
      }

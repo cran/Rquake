@@ -21,7 +21,7 @@ function(nh, g )
         
         if(length(twpx$tag)<1 )invisible(list(global.vars=g))
         
-        saveWPX(twpx, destdir="." )
+        PCsaveWPX(twpx, destdir="." )
         
       }
     else

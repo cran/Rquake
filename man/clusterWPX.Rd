@@ -38,7 +38,7 @@ Cluster depends on what one considers a cluster.
 
 
 \seealso{
-addWPX,	catWPX,	checkWPX,cleanWPX,saveWPX, setWPX, repairWPX
+addWPX,	catWPX,	checkWPX,cleanWPX,PCsaveWPX, setWPX, repairWPX
 }
 \examples{
 

@@ -9,7 +9,9 @@ function(XY, vel=list() , h1=c(0,0,0,0)  , PLOT=FALSE)
 
     if(missing(vel))
       {
-        data(LITHOS.vel)
+       
+    LITHOS.vel=defaultVEL(2)
+       
         vel= LITHOS.vel
       }
 
