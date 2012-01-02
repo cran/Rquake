@@ -15,7 +15,7 @@ estiamted using seismic data from field campaigns.
 \tabular{ll}{
 Package: \tab Rquake\cr
 Type: \tab Package\cr
-Version: \tab 1.0\cr
+Version: \tab 1.6-3\cr
 Date: \tab 2012-01-02\cr
 License: \tab  GPL \cr
 }

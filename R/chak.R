@@ -1,7 +1,7 @@
 chak <-
 function(DBnov , gstas, gcomps , fn, stas, vel, kind=2, Iendian=1, BIGLONG=FALSE)
   {
-    require(RSEIS)
+ 
     buts = c("GPIX","PPIX", "PickWin", "fspread", "gMAP", "RQ" , "CONTPF")
    
     BUTLAB = c("REPLOT", "DONE",  
@@ -19,7 +19,7 @@ function(DBnov , gstas, gcomps , fn, stas, vel, kind=2, Iendian=1, BIGLONG=FALSE
    
    
 
-  A1T = rangedatetime(twpx)
+  A1T = Qrangedatetime(twpx)
     at0 = A1T$min$jd+ A1T$min$hr/24+ A1T$min$mi/(24*60)+A1T$min$sec/(24*60*60)
     at1 = at0 -15/(24*3600) 
     at2 = at0 + 40/(24*3600)

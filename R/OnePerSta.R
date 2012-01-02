@@ -14,7 +14,7 @@ OnePerSta<-function(twpx, phase="Y")
       }
     
     
-    A1T = rangedatetime(twpx)
+    A1T = Qrangedatetime(twpx)
     s1 = secdifL(A1T$min,  twpx)
     
     usta = unique(twpx$name)

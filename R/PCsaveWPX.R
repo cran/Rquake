@@ -1,24 +1,45 @@
 PCsaveWPX<-function(twpx, destdir="." )
   {
-    ##########  given a pick data frame, save
-    ##########   to disk, based on minimum time
-    ######  write the file in the destdir directory (folder)
+##########  given a pick data frame, save
+##########   to disk, based on minimum time
+######  write the file in the destdir directory (folder)
+   
     
-    RDATES = rangedatetime(twpx)
-
-    ########### check  if the twpx dataframe is empty:
-    if(RDATES$max$yr == 0 & RDATES$min$yr == 0)
+    if( identical(legitWPX(twpx),0)  )
       {
-        return()
+
+        cat("No legitimate picks", sep="\n")
       }
-  
-    fout1 = PCfiledatetime(RDATES$min, 0)
+    else
+      {
 
-    fout2 = paste(fout1,"RDATA", sep="." )
+        RDATES = Qrangedatetime(twpx)
 
-    fout3 = paste(destdir, fout2, sep="/")
+########### check  if the twpx dataframe is empty:
+        if(RDATES$max$yr == 0 & RDATES$min$yr == 0)
+          {
+            return()
+          }
+        
+        fout1 = PCfiledatetime(RDATES$min, 0)
 
-    save(file=fout2, twpx)
+        fout2 = paste(fout1,"RDATA", sep="." )
 
-    invisible(fout2)
+        if( !identical(destdir, ".") )
+          {
+            fout3 = paste(destdir, fout2, sep="/")
+          }
+        else
+          {
+
+            fout3 = fout2
+          }
+
+        save(file=fout3, twpx)
+
+        invisible(fout2)
+      }
+
+
+    invisible(NULL)
   }

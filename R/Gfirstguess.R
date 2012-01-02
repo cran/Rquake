@@ -5,7 +5,7 @@ Gfirstguess<-function(Ldat, type="first" )
     
     if(identical(type, "first"))
       {
-        A1T = rangedatetime(Ldat)
+        A1T = Qrangedatetime(Ldat)
         wmin = which.min(Ldat$sec)
         pop = c(Ldat$lat[wmin],Ldat$lon[wmin],Ldat$z[wmin],Ldat$sec[wmin] )
       }

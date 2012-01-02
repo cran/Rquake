@@ -83,7 +83,7 @@ function( DBnov , gstas, gcomps,sched, stas, buts='GPIX', replot=TRUE , kind=0, 
                 twpx = deleteWPX(twpx, nona)
               }
 
-            A1T = rangedatetime(twpx)
+            A1T = Qrangedatetime(twpx)
             s1 = secdifL(A1T$min,  twpx)
 
             PF =  INITpickfile(stas=stas, src=NULL, WPX=twpx)

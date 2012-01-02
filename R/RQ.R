@@ -1,9 +1,7 @@
 RQ <- function(nh, g, idev=3)
   {   ####  relocation button for swig
-    require(minpack.lm)
-    require(RSEIS)
-    require(GEOmap)
-    ##   require(Rquake)
+   
+    ## 
 
     if(is.null(nh$sta))
       {
@@ -51,7 +49,7 @@ RQ <- function(nh, g, idev=3)
         
 
         
-        A1T = rangedatetime(twpx)
+        A1T = Qrangedatetime(twpx)
         s1 = secdifL(A1T$min,  twpx)
 
         nh$pickfile =  INITpickfile(stas=nh$sta, src=NULL, WPX=twpx)

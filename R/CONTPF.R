@@ -1,6 +1,6 @@
 CONTPF <- function(nh, g, idev=3)
   {
-    require(GEOmap)
+    
 
 
     ## print(nh$sta)
@@ -67,7 +67,7 @@ CONTPF <- function(nh, g, idev=3)
 
         
         
-        A1T = rangedatetime(twpx)
+        A1T = Qrangedatetime(twpx)
         s1 = secdifL(A1T$min,  twpx)
         
             pickfile =  INITpickfile(stas=nh$sta, src=NULL, WPX=twpx)

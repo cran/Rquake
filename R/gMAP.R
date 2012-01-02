@@ -2,7 +2,7 @@ gMAP <-
 function(nh, g, idev=3)
   {
 
-    require(GEOmap)
+    
     
     Apf =  nh$pickfile
 

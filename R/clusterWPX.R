@@ -11,14 +11,12 @@ clusterWPX<-function(twpx, tol=200, PLOT=FALSE)
     ##  clusterWPX(twpx)
     
 
-    require(cluster)
-   ### require(mcclust)
 
     nona = !is.na(twpx$tag)
     
     twpx = twpx[nona,]
     
-    A1T = rangedatetime(twpx)
+    A1T = Qrangedatetime(twpx)
     s1 = secdifL(A1T$min,  twpx)
     
 

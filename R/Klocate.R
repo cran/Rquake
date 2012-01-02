@@ -10,7 +10,7 @@ Klocate<-function(Ldat,
                   stas=list(name="", lat=NA, lon=NA, z=NA)  )
   {
 
-    require(Rquake)
+   
     
 ###   this location program has removed the projections.
 ###   distances are calculated between station and hypocenter
@@ -205,9 +205,7 @@ Klocate<-function(Ldat,
         Gdagger = S1$v %*% LAM %*% t(S1$u)
         Ssol = Gdagger  %*% RHS
 
-     ###    print( Ssol )
-        
-        
+     ###    print( Ssol )   
 ##########   get perturbation solution
 
 ####  dLL = XY.GLOB(EQ$x+Ssol[1], EQ$y+Ssol[2], proj   )
@@ -237,16 +235,19 @@ Klocate<-function(Ldat,
             break
           }
 
-        
-
-        
       }
 
     ###  calculate the error bars
 
   ##   covB = t(S1$v) %*% S1$v
 
-    covB =   Gdagger %*% diag(1/(Ldat$err^2) ) %*% t(Gdagger)
+    ####  covariance of the data:
+    covD = diag(Ldat$err^2)
+
+    ###  covariance of the model parameters
+    covB =   Gdagger %*% covD  %*% t(Gdagger)
+
+    #######  extract the diagonals (variances) and get sqrt
     dels = sqrt(diag(covB))
 
     return(list(lat=EQ$lat, lon=EQ$lon, z=EQ$z, t=EQ$t, QUAL=0, ITS=Kiters, cov=covB ))

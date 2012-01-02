@@ -1,7 +1,7 @@
 contPFarrivals <- function(PF, stas, proj=NULL, image=FALSE , phase="G", add=TRUE)
   {
     ###  given a pickfile and a station file, contour arrivals
-    require(GEOmap)
+    
     if(missing(proj)) proj = NULL
 
     NEX = 50

@@ -22,7 +22,7 @@ function( DBnov , gstas, gcomps,sched, stas, buts='GPIX', preFILT=list() , replo
    
    BUTLAB = c("REPLOT", "DONE",  "PREV", "HALF", "PSEL", 
      "ZOOM.out", "ZOOM.in", "RESTORE", "Pinfo", 
-     "FILT", "UNFILT", "GPIX", "SavePF", "SaveCSV",  "RQ" , "CONTPF", "PickWin",
+     "FILT", "UNFILT", "GPIX", "SavePF", "SaveCSV",  "editPIX" , "CONTPF", "PickWin",
      "Postscript")
 
     NSCHED = length(sched)
@@ -78,27 +78,40 @@ function( DBnov , gstas, gcomps,sched, stas, buts='GPIX', preFILT=list() , replo
 
 ####  save any picks to a file on disc for later use
      ####   print(data.frame(gret$g$WPX))
-        
+
+
+    if( identical(legitWPX(gret$g$WPX),0)  ) {
+
+    ####   print("No left over picks")
+      
+    }
+    else
+      {
         if(length(gret$g$WPX$sec)>=2)
           {
-      
+          ###  print(paste("Still have unsaved picks",length(gret$g$WPX$sec)) )
             twpx = gret$g$WPX
+          ###   print(data.frame(twpx))
             
-            
-            whirid =   gret$g$WPX$name=='99999' &  gret$g$WPX$comp=='9' &  gret$g$WPX$phase=="X"
+          ###  whirid =   gret$g$WPX$name=='99999' &  gret$g$WPX$comp=='9' &  gret$g$WPX$phase=="X"
            ##########  99999  is what is used in PickWin indicating no pick
-            nona = is.na(twpx$tag) |  whirid
+        ###    nona = is.na(twpx$tag) |  whirid
             
-            if(length(nona)>0)
-              {
-                twpx = deleteWPX(twpx, nona)
-              }
-
+         ###   if(length(nona)>0)
+          ###    {
+          ###      twpx = deleteWPX(twpx, nona)
+          ###    }
+###  print(data.frame(twpx))
            ##    print(twpx)
-            
-            A1T = rangedatetime(twpx)
+             ###print("going to rangedatetime")
+            A1T = Qrangedatetime(twpx)
             s1 = secdifL(A1T$min,  twpx)
 
+
+           ### print(data.frame(twpx))
+
+
+             ### print("going to INITpickfile")
             PF =  INITpickfile(stas=stas, src=NULL, WPX=twpx)
 
             ##
@@ -124,20 +137,8 @@ function( DBnov , gstas, gcomps,sched, stas, buts='GPIX', preFILT=list() , replo
                 hret = swig(GH, sel=jord, APIX=twpx, WIN=WIN, STDLAB=BUTLAB, PADDLAB=buts)
                 
               }
-
-###            dout = c(A1T$min$yr, A1T$min$jd, A1T$min$hr, A1T$min$mi,  A1T$min$sec)
-            
-###            fout1 = filedatetime(dout, 0)
-
-###            foutcvs = paste(fout1,"wpx", sep="." )
-###            fout2 = paste(fout1,"RDATA", sep="." )
-
-###            save(file=fout2, twpx)
- ###            write.csv(twpx, file =foutcvs, row.names = FALSE)
-###  read.csv("foo.csv")
-
            PFoutput(PF, stas = stas, sol = NULL, format = 2)
-
+          }
           }
         
 ###  Control-c  will break the loop,

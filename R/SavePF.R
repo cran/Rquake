@@ -6,22 +6,27 @@ function(nh, g )
     if(is.null(nh$pickfile))
       {
         print("SavePF: saving raw pix")
-        if(is.null(g$WPX) )invisible(list(global.vars=g))
-        
 
-        twpx= g$WPX
-        
-        nona = which( is.na(twpx$tag) )
-        
-        if(length(nona)>0)
+
+
+        if( identical(legitWPX(g$WPX),0)  ) {
+          
+          cat("Need to click on screen, register picks (GPIX, or YPIX)", sep="\n")
+        }
+        else
           {
-            twpx = deleteWPX(twpx, nona)
+            
+            twpx= g$WPX
+        
+            nona = which( is.na(twpx$tag) )
+            
+            if(length(nona)>0)
+              {
+                twpx = deleteWPX(twpx, nona)
+              }
+            
+            PCsaveWPX(twpx, destdir="." )
           }
-        
-        
-        if(length(twpx$tag)<1 )invisible(list(global.vars=g))
-        
-        PCsaveWPX(twpx, destdir="." )
         
       }
     else

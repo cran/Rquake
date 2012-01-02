@@ -1,10 +1,25 @@
 SaveCSV <-
-function(nh, g )
+  function(nh, g )
   {
 
-    destdir = "."
+    ##   destdir = "."
     
-        twpx= g$WPX
+    twpx= g$WPX
+
+  ##   print("SaveCSV test")
+  ##   print(twpx$sec)
+  ##   print(data.frame(twpx))
+
+    if( identical(legitWPX(twpx, quiet=FALSE),0)  ) {
+
+      cat("Need to click on screen, register picks (GPIX, or YPIX)", sep="\n")
+    }
+    else
+      {
+
+
+        ##  print("SaveCSV it is going here")
+
         
         nona = which( is.na(twpx$tag) )
         
@@ -12,24 +27,26 @@ function(nh, g )
           {
             twpx = deleteWPX(twpx, nona)
           }
-         if(length(twpx$tag)<1 )
-           {
-             
-             g$action="donothing"
-             invisible(list(global.vars=g))
-           }
+        if(length(twpx$tag)<1 )
+          {
+            
+            g$action="donothing"
+            invisible(list(global.vars=g))
+          }
         
-        RDATES = rangedatetime(twpx)
+        RDATES = Qrangedatetime(twpx)
         
         fout1 = PCfiledatetime(RDATES$min, 0)
         
         fout2 = paste(fout1,"csv", sep="." )
         
-        fout3 = paste(destdir, fout2, sep="/")
+        ##      fout3 = paste(destdir, fout2, sep="/")
+
+        write.csv(twpx, file=fout2)
+        g$LWPX = twpx
+        g$WPX = cleanWPX()
         
-        write.csv(twpx, file=fout3)
-        
-    
+      }
     g$zloc = list(x=NULL, y=NULL)
     g$action="donothing"
     invisible(list(global.vars=g))

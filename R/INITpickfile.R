@@ -16,7 +16,7 @@ function(stas=NULL, src=NULL, WPX=NULL)
             WPX = deleteWPX(WPX, nona)
           }
         
-    A1T = rangedatetime(WPX)
+    A1T = Qrangedatetime(WPX)
     s1 = secdifL(A1T$min,  WPX)
 
     ords1 = order(s1)
