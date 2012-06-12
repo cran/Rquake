@@ -58,10 +58,10 @@ Klocate<-function(Ldat,
 ###     A1 = Gfirstguess(Ldat, type="median")
     
 ###  establish coordinate system, convert to XY
-###    proj = setPROJ(type = 2, LAT0 = A1[1], LON0 = A1[2])
+###    proj = GEOmap::setPROJ(type = 2, LAT0 = A1[1], LON0 = A1[2])
 
-###    XY = GLOB.XY(Ldat$lat, Ldat$lon, proj)
-###    EQ = GLOB.XY(sol[1], sol[2] , proj)
+###    XY = GEOmap::GLOB.XY(Ldat$lat, Ldat$lon, proj)
+###    EQ = GEOmap::GLOB.XY(sol[1], sol[2] , proj)
 
 
     ##########  must have station lat-lon-z values 
@@ -116,8 +116,8 @@ Klocate<-function(Ldat,
     
     if(APLOT)
       {
-        plot(  fmod(Ldat$lon, 360) , Ldat$lat, pch=6)
-        points(fmod( EQ$lon, 360) , EQ$lat, pch=8, col='red')
+        plot(  RPMG::fmod(Ldat$lon, 360) , Ldat$lat, pch=6)
+        points(RPMG::fmod( EQ$lon, 360) , EQ$lat, pch=8, col='red')
       }
     
     for(Kiters in 1:maxit)
@@ -131,7 +131,7 @@ Klocate<-function(Ldat,
         
         RHS = rep(0, length=neqns)
 
-       DEL =  distaz(EQ$lat, EQ$lon, Ldat$lat, Ldat$lon)
+       DEL =  GEOmap::distaz(EQ$lat, EQ$lon, Ldat$lat, Ldat$lon)
 
         deltadis = DEL$dist
         daz =   DEL$az*dtor
@@ -161,11 +161,11 @@ Klocate<-function(Ldat,
 
            if(Ldat$phase[j]=="P")
               {
-                TAV =   travel.time1D(deltadis[j], EQ$z , 0, length(vel$zp) , vel$zp , vel$vp)
+                TAV =   RSEIS::travel.time1D(deltadis[j], EQ$z , 0, length(vel$zp) , vel$zp , vel$vp)
               }
             if(Ldat$phase[j]=="S")
               {
-                TAV =   travel.time1D(deltadis[j], EQ$z , 0, length(vel$zs) , vel$zs , vel$vs)
+                TAV =   RSEIS::travel.time1D(deltadis[j], EQ$z , 0, length(vel$zs) , vel$zs , vel$vs)
               }
 
             dtdz = TAV$dtdz
@@ -208,7 +208,7 @@ Klocate<-function(Ldat,
      ###    print( Ssol )   
 ##########   get perturbation solution
 
-####  dLL = XY.GLOB(EQ$x+Ssol[1], EQ$y+Ssol[2], proj   )
+####  dLL = GEOmap::XY.GLOB(EQ$x+Ssol[1], EQ$y+Ssol[2], proj   )
 
 ####  A1 = c(dLL$lat, dLL$lon, sol[3]+Ssol[3], sol[4]+Ssol[3])
 

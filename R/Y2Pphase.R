@@ -11,7 +11,7 @@ Y2Pphase<-function(twpx, phase)
        wrid = which(!is.na(mpy))
        if(length(wrid)>0)
          {
-           twpx =   deleteWPX(twpx,wrid )
+           twpx =   RSEIS::deleteWPX(twpx,wrid )
            WY  = which(twpx$phase==phase)
            twpx$phase[WY]  = "P"
          }

@@ -5,7 +5,9 @@
 \description{Plot Earthquake location
 }
 \usage{
-plotEQ(Ldat, AQ, add = FALSE, prep = FALSE, TIT = "UTM Projected Stations", proj = NULL, xlim = NULL, ylim = NULL)
+plotEQ(Ldat, AQ, add = FALSE, prep = FALSE,
+TIT = "UTM Projected Stations", proj = NULL,
+ xlim = NULL, ylim = NULL)
 }
 \arguments{
   \item{Ldat}{Data list

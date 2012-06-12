@@ -75,9 +75,9 @@ litecolors = c( "peachpuff2",      "darkolivegreen2", "slategray1" ,     "lightg
         scols1[gvars$sonoff==0] = stacols2
         ccols1[gvars$conoff==0] = compscols2 
         
-        YN1 = BUTREPLOT(gvars$ustas, cols=scols1, ylim=c(.2, 1), newplot=FALSE)
-         YN2 = BUTREPLOT(gvars$ucomps, cols=ccols1, ylim=c(0, .15), newplot=FALSE)
-        buttons = rowBUTTONS(gvars$BLABS, col=colabs, pch=pchlabs)
+        YN1 = RSEIS::BUTREPLOT(gvars$ustas, cols=scols1, ylim=c(.2, 1), newplot=FALSE)
+         YN2 = RSEIS::BUTREPLOT(gvars$ucomps, cols=ccols1, ylim=c(0, .15), newplot=FALSE)
+        buttons = RPMG::rowBUTTONS(gvars$BLABS, col=colabs, pch=pchlabs)
       
         return(list(YS=YN1, YC=YN2, buttons=buttons))
         
@@ -146,7 +146,7 @@ litecolors = c( "peachpuff2",      "darkolivegreen2", "slategray1" ,     "lightg
 #######  add last click to list of clicks, continue 
             zloc  = list(x=c(zloc$x,iloc$x), y=c(zloc$y, iloc$y))
             gvars$zenclick = length(zloc$x)
-            K =  whichbutt(iloc , Y$buttons)
+            K =  RPMG::whichbutt(iloc , Y$buttons)
             sloc = zloc
             
             
@@ -173,7 +173,7 @@ litecolors = c( "peachpuff2",      "darkolivegreen2", "slategray1" ,     "lightg
                 selp = list( sta=which(IDB$usta %in% Aselstas ) , comp=which( IDB$ucomp %in% Aselcomps))
     
      
-                buttons = rowBUTTONS(gvars$BLABS, col=rep(grey(.8), length(gvars$BLABS)),
+                buttons = RPMG::rowBUTTONS(gvars$BLABS, col=rep(grey(.8), length(gvars$BLABS)),
                   pch=rep("NULL", length(gvars$BLABS)))
                 title("Done, Return to Calling Program")
                 
@@ -184,7 +184,7 @@ litecolors = c( "peachpuff2",      "darkolivegreen2", "slategray1" ,     "lightg
          if(K[Nclick] == match("QUIT", BLABS, nomatch = NOLAB))
           {
             zloc =list(x=NULL, y=NULL)
-            buttons = rowBUTTONS(BLABS, col=rep(grey(.8), length(BLABS)), pch=rep("NULL", length(BLABS)))
+            buttons = RPMG::rowBUTTONS(BLABS, col=rep(grey(.8), length(BLABS)), pch=rep("NULL", length(BLABS)))
             title("Return to Calling Program")
             return(sel)
             break;
@@ -211,7 +211,7 @@ litecolors = c( "peachpuff2",      "darkolivegreen2", "slategray1" ,     "lightg
                   }
               }
               zloc =list(x=NULL, y=NULL)
-            buttons = rowBUTTONS(BLABS, col=rep(grey(.8), length(BLABS)), pch=rep("NULL", length(BLABS)))
+            buttons = RPMG::rowBUTTONS(BLABS, col=rep(grey(.8), length(BLABS)), pch=rep("NULL", length(BLABS)))
             title("Return to Calling Program")
             break;
             

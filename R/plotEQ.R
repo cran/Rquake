@@ -11,8 +11,8 @@ plotEQ<-function(Ldat, AQ, add=FALSE, prep=FALSE, TIT="UTM Projected Stations", 
     
     EQ = AQ$EQ
 ####   get station X-Y values in km
-    XY = GLOB.XY(Ldat$lat, Ldat$lon, proj)
-    eXY = GLOB.XY(EQ$lat, EQ$lon, proj)
+    XY = GEOmap::GLOB.XY(Ldat$lat, Ldat$lon, proj)
+    eXY = GEOmap::GLOB.XY(EQ$lat, EQ$lon, proj)
 
    
     if(!add)
@@ -33,7 +33,7 @@ plotEQ<-function(Ldat, AQ, add=FALSE, prep=FALSE, TIT="UTM Projected Stations", 
 
     qtip = ripper(AQ)
 
-    trip = GLOB.XY(qtip[,1], qtip[,2], proj)
+    trip = GEOmap::GLOB.XY(qtip[,1], qtip[,2], proj)
     
     points(trip$x, trip$y, col=zcols[qtip[, 5]], pch=qtip[, 5], cex=.5)
     lines(trip$x, trip$y,col=zcols[qtip[, 5]])

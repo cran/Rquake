@@ -16,10 +16,10 @@ function(GH, vel=list() , init=c(0,0,0,0) , PLOT=FALSE )
 
     ###########  set up the projection - use the median station location
 
-    proj = setPROJ(type=2, LAT0 =median(STAS$lat) , LON0 = median(STAS$lon) )
+    proj = GEOmap::setPROJ(type=2, LAT0 =median(STAS$lat) , LON0 = median(STAS$lon) )
 
     #############    convert the LATLON of stations to X-Y
-    XY = GLOB.XY(STAS$lat, STAS$lon, proj)
+    XY = GEOmap::GLOB.XY(STAS$lat, STAS$lon, proj)
 
     ##########   set the initial guess: z= 6 km 
     initz = 6.0
@@ -49,10 +49,10 @@ function(GH, vel=list() , init=c(0,0,0,0) , PLOT=FALSE )
     ############   parstart is the initial guess
 
     #############   non-linear least square inversion
-    nls.out <- nls.lm(par=parStart, fn = residFun, STAS=XY, vel=vel, control = nls.lm.control(nprint=1))
+    nls.out <- minpack.lm::nls.lm(par=parStart, fn = residFun, STAS=XY, vel=vel, control = minpack.lm::nls.lm.control(nprint=1))
 
     #############  after done, get LAT-LON information 
-    LL = XY.GLOB(nls.out$par[1], nls.out$par[2], proj)
+    LL = GEOmap::XY.GLOB(nls.out$par[1], nls.out$par[2], proj)
     if(LL$lon>180)  LL$lon = LL$lon-360
     SOL = c(LL$lat, LL$lon, nls.out$par[3], nls.out$par[4] )
 
@@ -68,13 +68,13 @@ function(GH, vel=list() , init=c(0,0,0,0) , PLOT=FALSE )
       text(XY, labels=STAS$name, pos=3)
       points(h1[1], h1[2], pch=3, col='blue')
 
-      gloc = GLOB.XY(GH$pickfile$LOC$lat, GH$pickfile$LOC$lon, proj)
+      gloc = GEOmap::GLOB.XY(GH$pickfile$LOC$lat, GH$pickfile$LOC$lon, proj)
       points(gloc$x, gloc$y, pch=8, col='green')
 
       points(nls.out$par[1], nls.out$par[2], pch=8, col='red')
 
        u = par('usr')
-     LEG = jlegend( u[1], u[4], c("Init", "OLD", "NEW"), pch=c(3,8,8) , col=c('blue', 'green', 'red'), plot=FALSE  )
+     LEG = RSEIS::jlegend( u[1], u[4], c("Init", "OLD", "NEW"), pch=c(3,8,8) , col=c('blue', 'green', 'red'), plot=FALSE  )
 
 
 

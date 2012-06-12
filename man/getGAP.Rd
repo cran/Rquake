@@ -44,10 +44,10 @@ WEQ = list(lat=runif(NEQ, 35.9823, 36.1414), lon=runif(NEQ, -118.0031, -117.6213
 
  MLAT = median(stas$lat)
   MLON = median(stas$lon)
-  proj = setPROJ(type=2, LAT0=MLAT, LON0=MLON)
+  proj = GEOmap::setPROJ(type=2, LAT0=MLAT, LON0=MLON)
 
-  XYSTAS = GLOB.XY(stas$lat,  stas$lon , proj)
-  eqxy = GLOB.XY(WEQ$lat, WEQ$lon, proj)
+  XYSTAS = GEOmap::GLOB.XY(stas$lat,  stas$lon , proj)
+  eqxy = GEOmap::GLOB.XY(WEQ$lat, WEQ$lon, proj)
 
 
 plot(range(c(XYSTAS$x, eqxy$x)), range(c(XYSTAS$y, eqxy$y)), type='n', asp=1, xlab="km", ylab="km" )

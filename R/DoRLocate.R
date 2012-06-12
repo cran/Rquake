@@ -22,7 +22,7 @@ DoRLocate<-function(LF, stas, vel,
         
         if(any(twpx$onoff<1))
           {
-            Ldat = deleteWPX(twpx, which(twpx$onoff<1) )
+            Ldat = RSEIS::deleteWPX(twpx, which(twpx$onoff<1) )
           }
         else
           {
@@ -58,15 +58,15 @@ DoRLocate<-function(LF, stas, vel,
         MLAT = median(Ldat$lat)
         MLON = median(Ldat$lon)
 
-        proj = setPROJ(type=2, LAT0=MLAT, LON0=MLON)
+        proj = GEOmap::setPROJ(type=2, LAT0=MLAT, LON0=MLON)
 
-        XY = GLOB.XY(Ldat$lat, Ldat$lon, proj)
+        XY = GEOmap::GLOB.XY(Ldat$lat, Ldat$lon, proj)
 
         wstart = which.min(Ldat$sec)
 
         EQ = list(lat=Ldat$lat[wstart], lon=Ldat$lon[wstart], z=6, t=Ldat$sec[wstart]-0.1 )
 
-        eqxy = GLOB.XY(EQ$lat, EQ$lon, proj)
+        eqxy = GEOmap::GLOB.XY(EQ$lat, EQ$lon, proj)
 
         EQ$x = XY$x[wstart]
         EQ$y = XY$y[wstart]

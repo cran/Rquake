@@ -90,7 +90,7 @@ Jonathan M. Lees<jonathan.lees@unc.edu>
 \seealso{XYlocate, Klocate, DoRLocate
 }
 \examples{
-
+library(RSEIS)
 data(GH)
 
 g1 = GH$pickfile

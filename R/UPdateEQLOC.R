@@ -18,9 +18,9 @@ function(PF,  sol, vel, stas=NULL)
         pstas$z = staz
       }
 
-    proj = setPROJ(type=2, LAT0 =median(pstas$lat) , LON0 = median(pstas$lon) )
+    proj = GEOmap::setPROJ(type=2, LAT0 =median(pstas$lat) , LON0 = median(pstas$lon) )
     
-    XY = GLOB.XY(pstas$lat, pstas$lon, proj)
+    XY = GEOmap::GLOB.XY(pstas$lat, pstas$lon, proj)
     elcor = rep(0, length(pstas$lat))
     
     DZ = pstas$z - mean(stas$z)
@@ -32,7 +32,7 @@ function(PF,  sol, vel, stas=NULL)
     XY$phase = pstas$phase
     XY$sec = pstas$sec
     
-    eqXY = GLOB.XY(sol[1], sol[2], proj)
+    eqXY = GEOmap::GLOB.XY(sol[1], sol[2], proj)
     res =  EQXYresid(XY, vel=vel , h1=c(eqXY$x, eqXY$y, sol[2],sol[4]) , PLOT=FALSE)
     
     pstas$res = res

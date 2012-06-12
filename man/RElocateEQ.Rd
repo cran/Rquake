@@ -5,7 +5,9 @@
 \description{Relocate earthquakes stored in UW format
 }
 \usage{
-RElocateEQ(lps, sta, vel, cont = TRUE, sleep = 0.5, mapfun = NULL, add = FALSE, proj = NULL, xlim = NULL, ylim = NULL)
+RElocateEQ(lps, sta, vel, cont = TRUE,
+sleep = 0.5, mapfun = NULL, add = FALSE,
+ proj = NULL, xlim = NULL, ylim = NULL)
 }
 \arguments{
   \item{lps}{list of filenames save in UW format
@@ -48,7 +50,8 @@ Jonathan M. Lees<jonathan.lees@unc.edu>
 
 \dontrun{
 
-cosoqk = RElocateEQ(lps, sta, vel, cont=TRUE, mapfun=cosoPLOT, proj=proj, xlim=xlim, ylim=ylim )
+cosoqk = RElocateEQ(lps, sta, vel, cont=TRUE,
+ mapfun=cosoPLOT, proj=proj, xlim=xlim, ylim=ylim )
 
 
 }

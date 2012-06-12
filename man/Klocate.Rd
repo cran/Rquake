@@ -6,7 +6,10 @@
 Earthquake Hypocenter Location
 }
 \usage{
-Klocate(Ldat, sol = c(0, 0, 0, 0), vel=defaultVEL(6), distwt = 20, errtol = c(0.01, 0.01, 0.01), maxit = 20, Lambda = 1, guessdepth = 6, APLOT = FALSE, stas = list(name = "", lat = NA, lon = NA, z = NA))
+Klocate(Ldat, sol = c(0, 0, 0, 0), vel=defaultVEL(6),
+distwt = 20, errtol = c(0.01, 0.01, 0.01), maxit = 20,
+Lambda = 1, guessdepth = 6, APLOT = FALSE,
+stas = list(name = "", lat = NA, lon = NA, z = NA))
 }
 \arguments{
   \item{Ldat}{swig pick list

@@ -16,7 +16,7 @@ editPIX<-function(nh, g )
           {
             zappa = match(g$KLICK, g$BLABS)
             col = g$colpix[which(g$pnos=="GPIX")]
-            kix = legitpix(g$sel, g$zloc, g$zenclick)
+            kix = RSEIS::legitpix(g$sel, g$zloc, g$zenclick)
             ypick =  kix$ypick
             ppick = kix$ppick
             
@@ -24,7 +24,7 @@ editPIX<-function(nh, g )
             if(length(ypick)>0)
               {
                 
-                onewpx = cleanWPX()
+                onewpx = RSEIS::cleanWPX()
                 
                 ipick = g$sel[ypick]
                 
@@ -48,7 +48,7 @@ editPIX<-function(nh, g )
 
                     sta1 =  nh$STNS[i1]
                     comp1 = nh$COMPS[i1]
-                    pic1 = recdate(nh$info$jd[i1], nh$info$hr[i1], nh$info$mi[i1],
+                    pic1 = RSEIS::recdate(nh$info$jd[i1], nh$info$hr[i1], nh$info$mi[i1],
                       asec, yr=nh$info$yr[i1])
 
                    #### print(data.frame(pic1))
@@ -58,13 +58,13 @@ editPIX<-function(nh, g )
 
                     if(length(w1)<1)next
                     
-                    sek = abs( secdifL(pic1, twpx) )
+                    sek = abs( RSEIS::secdifL(pic1, twpx) )
 
                     iw1 = which.min( sek[w1] )
                     
                     getridofit  = w1[iw1]
 
-                    twpx = deleteWPX(twpx,  getridofit) 
+                    twpx = RSEIS::deleteWPX(twpx,  getridofit) 
                     ## 
                   }
               }

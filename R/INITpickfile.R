@@ -2,22 +2,22 @@ INITpickfile <-
 function(stas=NULL, src=NULL, WPX=NULL)
   {
 ##  initialize a pickfile based on picks
-    ###  from swig stored in the  WPX
+    ###  from RSEIS::swig stored in the  WPX
 
     if(is.null(WPX)) return(NULL)
     
-    Apf = EmptyPickfile()
+    Apf = RSEIS::EmptyPickfile()
 
 
     nona = which( is.na(WPX$tag) )
         
         if(length(nona)>0)
           {
-            WPX = deleteWPX(WPX, nona)
+            WPX = RSEIS::deleteWPX(WPX, nona)
           }
         
     A1T = Qrangedatetime(WPX)
-    s1 = secdifL(A1T$min,  WPX)
+    s1 = RSEIS::secdifL(A1T$min,  WPX)
 
     ords1 = order(s1)
 
@@ -31,13 +31,13 @@ function(stas=NULL, src=NULL, WPX=NULL)
     wfirst = as.list( spx[1, ] )
     
     wfirst$sec = 0
-    psecs = secdifL(wfirst, spx)
+    psecs = RSEIS::secdifL(wfirst, spx)
     
     Apf$LOC$yr =  wfirst$yr
     Apf$LOC$jd =  wfirst$jd
     Apf$LOC$hr =  wfirst$hr
     Apf$LOC$mi =  wfirst$mi
-    moday =  getmoday(wfirst$yr, wfirst$jd)
+    moday =  RSEIS::getmoday(wfirst$yr, wfirst$jd)
     Apf$LOC$mo =  wfirst$mo
     Apf$LOC$dom =  wfirst$dom
     

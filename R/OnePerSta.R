@@ -10,12 +10,12 @@ OnePerSta<-function(twpx, phase="Y")
     
     if(length(nona)>0)
       {
-        twpx = deleteWPX(twpx, nona)
+        twpx = RSEIS::deleteWPX(twpx, nona)
       }
     
     
     A1T = Qrangedatetime(twpx)
-    s1 = secdifL(A1T$min,  twpx)
+    s1 = RSEIS::secdifL(A1T$min,  twpx)
     
     usta = unique(twpx$name)
 
@@ -33,7 +33,7 @@ OnePerSta<-function(twpx, phase="Y")
 
     ww = which( twpx$onoff<0 )
     
-    twpx = deleteWPX(twpx, ww)
+    twpx = RSEIS::deleteWPX(twpx, ww)
     
     
     return(twpx)

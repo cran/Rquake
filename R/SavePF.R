@@ -22,7 +22,7 @@ function(nh, g )
             
             if(length(nona)>0)
               {
-                twpx = deleteWPX(twpx, nona)
+                twpx = RSEIS::deleteWPX(twpx, nona)
               }
             
             PCsaveWPX(twpx, destdir="." )

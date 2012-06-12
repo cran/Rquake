@@ -8,7 +8,7 @@ function( DBnov , gstas, gcomps,sched, stas, buts='GPIX', replot=TRUE , kind=0, 
      }
 
 
-   IDB = infoDB(DBnov)
+   IDB = RSEIS::infoDB(DBnov)
    
    BUTLAB = c("REPLOT", "DONE",  "PREV", "HALF", "PSEL", 
      "ZOOM.out", "ZOOM.in", "RESTORE", "Pinfo", 
@@ -26,17 +26,17 @@ function( DBnov , gstas, gcomps,sched, stas, buts='GPIX', replot=TRUE , kind=0, 
         at2 = at1+AT2shift
         ##
         cat(paste(i, at1) , sep="\n" )
-        GH = Mine.seis(at1, at2, DBnov , gstas, gcomps, kind=kind, Iendian=Iendian, BIGLONG=BIGLONG)
+        GH = RSEIS::Mine.seis(at1, at2, DBnov , gstas, gcomps, kind=kind, Iendian=Iendian, BIGLONG=BIGLONG)
         GH$sta = stas
         GH$IDB = IDB
      ##   GH$pickfile = PF
      ##   GH$vel = vel
         
-        ## FH = FILT.SEISN(GH,  FILT=preFILT, TAPER=0.1, POSTTAPER=0.1)
+        ## FH = RSEIS::FILT.SEISN(GH,  FILT=preFILT, TAPER=0.1, POSTTAPER=0.1)
 
         hord = which(GH$COMPS=="V")
         
-        gret = swig(GH, sel=hord, STDLAB=BUTLAB, PADDLAB=buts)
+        gret = RSEIS::swig(GH, sel=hord, STDLAB=BUTLAB, PADDLAB=buts)
         
         if(gret$but=="ReSet")
           {
@@ -80,11 +80,11 @@ function( DBnov , gstas, gcomps,sched, stas, buts='GPIX', replot=TRUE , kind=0, 
             
             if(length(nona)>0)
               {
-                twpx = deleteWPX(twpx, nona)
+                twpx = RSEIS::deleteWPX(twpx, nona)
               }
 
             A1T = Qrangedatetime(twpx)
-            s1 = secdifL(A1T$min,  twpx)
+            s1 = RSEIS::secdifL(A1T$min,  twpx)
 
             PF =  INITpickfile(stas=stas, src=NULL, WPX=twpx)
 
@@ -97,18 +97,18 @@ function( DBnov , gstas, gcomps,sched, stas, buts='GPIX', replot=TRUE , kind=0, 
 
                 ohoh = list(dist=s1[ords1] , name=osta)
                 
-                jord =  seisorder(GH, ohoh, VNE="V")
+                jord =  RSEIS::seisorder(GH, ohoh, VNE="V")
                 
 
-                gzoom1 = secdifL(  GH$info, A1T$min  )
-                gzoom2 = secdifL(  GH$info, A1T$max  )
+                gzoom1 = RSEIS::secdifL(  GH$info, A1T$min  )
+                gzoom2 = RSEIS::secdifL(  GH$info, A1T$max  )
                 
                 WIN=c(min(gzoom1-10), max(gzoom2)+30)
 
                
                 GH$pickfile = PF
                 
-                hret = swig(GH, sel=jord, APIX=twpx, WIN=WIN, STDLAB=BUTLAB, PADDLAB=buts)
+                hret = RSEIS::swig(GH, sel=jord, APIX=twpx, WIN=WIN, STDLAB=BUTLAB, PADDLAB=buts)
                 
               }
 

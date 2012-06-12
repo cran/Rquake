@@ -8,8 +8,11 @@
   local or regional settings.
 }
 \usage{
-XYlocate(Ldat, EQ, vel, maxITER = 10, distwt = 10, lambdareg = 100, FIXZ
-= FALSE, REG = TRUE, WTS = TRUE, STOPPING = TRUE, RESMAX = c(.4,.5), tolx = 0.005, toly = 0.005, tolz = 0.01, PLOT = FALSE)
+XYlocate(Ldat, EQ, vel, maxITER = 10, distwt = 10,
+lambdareg = 100, FIXZ
+= FALSE, REG = TRUE, WTS = TRUE, STOPPING = TRUE,
+RESMAX = c(.4,.5), tolx = 0.005, toly = 0.005,
+ tolz = 0.01, PLOT = FALSE)
 }
 \arguments{
   \item{Ldat}{list, must inlude: x,y,err, sec, cor (see details)
@@ -81,7 +84,7 @@ Jonathan M. Lees<jonathan.lees@unc.edu>
 \seealso{Vlocate
 }
 \examples{
-
+library(RSEIS)
 data(GH)
 
 g1 = GH$pickfile
@@ -112,10 +115,10 @@ vel= VELMOD1D
  MLAT = median(Ldat$lat)
     MLON = median(Ldat$lon)
     
-    proj = setPROJ(type=2, LAT0=MLAT, LON0=MLON)
+    proj = GEOmap::setPROJ(type=2, LAT0=MLAT, LON0=MLON)
 
 ####   get station X-Y values in km
-    XY = GLOB.XY(Ldat$lat, Ldat$lon, proj)
+    XY = GEOmap::GLOB.XY(Ldat$lat, Ldat$lon, proj)
 ###   add to Ldat list
     Ldat$x = XY$x
     Ldat$y = XY$y
@@ -143,7 +146,7 @@ EQ = list(x=XY$x[wstart], y=XY$y[wstart], z=6, t=Ldat$sec[wstart] )
 
 ########  update the new location
 
-AXY = XY.GLOB(AQ$EQ$x, AQ$EQ$y, proj)
+AXY = GEOmap::XY.GLOB(AQ$EQ$x, AQ$EQ$y, proj)
 AQ$EQ$lat = AXY$lat
 AQ$EQ$lon = AXY$lon
 if(AQ$EQ$lon>180) { AQ$EQ$lon = AQ$EQ$lon-360 }

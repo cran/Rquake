@@ -25,7 +25,7 @@ SaveCSV <-
         
         if(length(nona)>0)
           {
-            twpx = deleteWPX(twpx, nona)
+            twpx = RSEIS::deleteWPX(twpx, nona)
           }
         if(length(twpx$tag)<1 )
           {
@@ -44,7 +44,7 @@ SaveCSV <-
 
         write.csv(twpx, file=fout2)
         g$LWPX = twpx
-        g$WPX = cleanWPX()
+        g$WPX = RSEIS::cleanWPX()
         
       }
     g$zloc = list(x=NULL, y=NULL)

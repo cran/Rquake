@@ -32,7 +32,7 @@ RElocateEQ<-function(lps, sta, vel, cont=TRUE,
     
     for(ipi in 1:Ntot)
       {
-        g1 = getpfile(lps[ipi], stafile = NULL)
+        g1 = RSEIS::getpfile(lps[ipi], stafile = NULL)
 
         MA = match(g1$STAS$name, sta$name)
 

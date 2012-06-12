@@ -123,10 +123,10 @@ data.frame(H)
 MLAT = median(stas$lat)
 MLON = median(stas$lon)
 
-proj = setPROJ(type=2, LAT0=MLAT, LON0=MLON)
+proj = GEOmap::setPROJ(type=2, LAT0=MLAT, LON0=MLON)
 
-staxy = GLOB.XY(stas$lat, stas$lon, proj)
-zq = GLOB.XY(H$lat, H$lon, proj)
+staxy = GEOmap::GLOB.XY(stas$lat, stas$lon, proj)
+zq = GEOmap::GLOB.XY(H$lat, H$lon, proj)
 
 plot(c(staxy$x, zq$x) , c(staxy$y, zq$y), type='n', xlab="E, km",
 ylab="N, km", asp=1)

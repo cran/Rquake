@@ -4,7 +4,7 @@ function(KAT, Mlat, Mlon, rad=1000 ,  t1=1, t2=2)
 ###  given a katalog a lat and lon
     ###   radius and a time window, extract the events that comply
     ###   get the katalog from function prepPDE
-    d = distaz(Mlat, Mlon, KAT$lat, KAT$lon)
+    d = GEOmap::distaz(Mlat, Mlon, KAT$lat, KAT$lon)
 
     if(!is.null(rad)  )
       {

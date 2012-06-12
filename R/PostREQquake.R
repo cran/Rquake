@@ -10,7 +10,7 @@ PostREQquake<-function(XQ, proj)
       }
 
     
-    ZEXY = GLOB.XY(ZEDS[,1], ZEDS[,2], proj)
+    ZEXY = GEOmap::GLOB.XY(ZEDS[,1], ZEDS[,2], proj)
     points(ZEXY, pch=8, col='red')
 
     for(i in 1:length(XQ))

@@ -40,7 +40,7 @@ function(PF, stas=NULL, sol=NULL, format=0 )
     fout2 = paste(fout1,"RDATA", sep="." )
 
     if(any( c(1,0) %in% format ) )   save(file=fout2, twpx)
-    if(any( c(2,0) %in% format ) )   writeUWpickfile(upf, output=output)
+    if(any( c(2,0) %in% format ) )   RSEIS::writeUWpickfile(upf, output=output)
     if(any( c(3,0) %in% format ) )
       {
         write.csv(twpx, file =foutcvs, row.names = FALSE)

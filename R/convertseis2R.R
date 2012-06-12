@@ -18,7 +18,7 @@ convertseis2R<-function(fn, destdir=".", kind=1, Iendian=1, BIGLONG=FALSE)
         bn4 = paste(sep=".", bn3, "RDATA")
         fndest = paste(sep="/", destdir, bn4)
         ####  read in data
-        DAT = JGET.seis(fn2, kind = kind, Iendian = Iendian, BIGLONG = BIGLONG, 
+        DAT = RSEIS::JGET.seis(fn2, kind = kind, Iendian = Iendian, BIGLONG = BIGLONG, 
           HEADONLY = FALSE, PLOT = -1)
         ####  save in R format
         save(file=fndest, DAT)

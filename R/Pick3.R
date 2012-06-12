@@ -1,7 +1,7 @@
 Pick3<-function(nh, g)
   {
 
-     kix = legitpix(g$sel, g$zloc, g$zenclick)
+     kix = RSEIS::legitpix(g$sel, g$zloc, g$zenclick)
           ypick =  kix$ypick
           ppick = kix$ppick
                 
@@ -35,7 +35,7 @@ Pick3<-function(nh, g)
               if(is.null(g$Pickdev))
                 {
                ####   X11(width = 12, height = 7)
-                  screens(2)
+                  RSEIS::screens(2)
                   devl = dev.list()
                   iw =  which(g$MAINdev!=devl)
                   
@@ -77,7 +77,7 @@ Pick3<-function(nh, g)
               ## print(SWP)
 
               
-              newpicks = swig(nh, APIX=g$WPX, sel=ma, WIN=pickwin,
+              newpicks = RSEIS::swig(nh, APIX=g$WPX, sel=ma, WIN=pickwin,
                 STDLAB=PICKLAB ,PADDLAB=PLAB, PHASE=1   ,
                 SHOWONLY = FALSE, TIT=stit)
 

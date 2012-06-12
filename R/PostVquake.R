@@ -28,7 +28,7 @@ PostVquake<-function(MANYeq, GX, GY, XY, proj, add=FALSE, ... )
     plot(GX, GY, type='n', xlab="km" , ylab="km" , asp=1)
     points(XY, pch=6)
   }
-    ZEXY = GLOB.XY(ZEDS[,1], ZEDS[,2], proj)
+    ZEXY = GEOmap::GLOB.XY(ZEDS[,1], ZEDS[,2], proj)
     points(ZEXY, pch=8, col='red')
 
 

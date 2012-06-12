@@ -32,7 +32,7 @@ function(DBnov , gstas, gcomps , fn, stas, vel, kind=2, Iendian=1, BIGLONG=FALSE
         "palevioletred3", "mediumpurple3", "tomato", "dodgerblue1", 
         "olivedrab4", "yellow4", "pink4")
 
-     GH = Mine.seis(at1, at2, DBnov , gstas, gcomps, kind=2, Iendian=1, BIGLONG=FALSE)
+     GH = RSEIS::Mine.seis(at1, at2, DBnov , gstas, gcomps, kind=2, Iendian=1, BIGLONG=FALSE)
 ###   add in the station information
     GH$sta = stas
     GH$pickfile = PF
@@ -51,7 +51,7 @@ function(DBnov , gstas, gcomps , fn, stas, vel, kind=2, Iendian=1, BIGLONG=FALSE
 
     onlyPY = twpx[twpx$phase=="P" | twpx$phase=="Y", ]
     
-      s1 = secdifL(A1T$min,   onlyPY )
+      s1 = RSEIS::secdifL(A1T$min,   onlyPY )
         
         ords1 = order(s1)
         
@@ -60,9 +60,9 @@ function(DBnov , gstas, gcomps , fn, stas, vel, kind=2, Iendian=1, BIGLONG=FALSE
 
 ohoh = list(dist=s1[ords1] , name=osta)
             
-           jord =  seisorder(GH, ohoh, VNE="V")
+           jord =  RSEIS::seisorder(GH, ohoh, VNE="V")
             
-  hret = swig(GH, sel=jord, APIX=twpx,  STDLAB=BUTLAB,  PADDLAB=buts)
+  hret = RSEIS::swig(GH, sel=jord, APIX=twpx,  STDLAB=BUTLAB,  PADDLAB=buts)
 
     
 return(hret)

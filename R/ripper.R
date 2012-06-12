@@ -19,7 +19,7 @@ ripper<-function(AQ)
         
       }
 
-    gat = XY.GLOB(rat[,1], rat[,2], AQ$proj)
+    gat = GEOmap::XY.GLOB(rat[,1], rat[,2], AQ$proj)
     
     rat[,1:2] = cbind(gat$lat, gat$lon)
     return(rat)

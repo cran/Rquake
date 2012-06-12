@@ -8,7 +8,8 @@ field.  Uses a database describing the locations and content
 of each file stored on disk.
 }
 \usage{
-viewseis(DBnov , gstas, gcomps,sched, stas, buts='GPIX', replot=TRUE , kind=0, Iendian=1, BIGLONG=FALSE)
+viewseis(DBnov , gstas, gcomps,sched, stas,
+buts='GPIX', replot=TRUE , kind=0, Iendian=1, BIGLONG=FALSE)
 }
 \arguments{
   \item{DBnov}{RSEIS Data Base
@@ -48,7 +49,8 @@ Jonathan M. Lees<jonathan.lees@unc.edu>
 \examples{
 \dontrun{
 sched  =seq(from=325, to=335, by=1/24)
-viewseis( DBnov , gstas, gcomps , sched, kind=2, Iendian=1, BIGLONG=FALSE)
+viewseis( DBnov , gstas, gcomps , sched, kind=2,
+ Iendian=1, BIGLONG=FALSE)
 }
 
 }

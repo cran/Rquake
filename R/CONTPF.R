@@ -59,7 +59,7 @@ CONTPF <- function(nh, g, idev=3)
         
         if(length(nona)>0)
           {
-            twpx = deleteWPX(twpx, nona)
+            twpx = RSEIS::deleteWPX(twpx, nona)
           }
 
       ##   print("CONTPF:  dumping")
@@ -68,7 +68,7 @@ CONTPF <- function(nh, g, idev=3)
         
         
         A1T = Qrangedatetime(twpx)
-        s1 = secdifL(A1T$min,  twpx)
+        s1 = RSEIS::secdifL(A1T$min,  twpx)
         
             pickfile =  INITpickfile(stas=nh$sta, src=NULL, WPX=twpx)
         # print("CONTPF:  dumping")

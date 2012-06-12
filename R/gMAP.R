@@ -44,8 +44,8 @@ function(nh, g, idev=3)
     contPFarrivals(Apf, sta, proj=gproj, image=TRUE , add=TRUE)
   if(!is.na(Apf$LOC$lat))
     {
-gstaxy = GLOB.XY(stalats, stalons, gproj)
-gevxy = GLOB.XY(Apf$LOC$lat, Apf$LOC$lon, gproj)
+gstaxy = GEOmap::GLOB.XY(stalats, stalons, gproj)
+gevxy = GEOmap::GLOB.XY(Apf$LOC$lat, Apf$LOC$lon, gproj)
  points(gevxy$x, gevxy$y,  pch=8, col='blue')
  segments(gevxy$x, gevxy$y, gstaxy$x, gstaxy$y, col='red')
     }

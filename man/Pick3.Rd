@@ -46,7 +46,7 @@ Jonathan M. Lees<jonathan.lees@unc.edu>
 \examples{
 
 \dontrun{
-
+library(RSEIS)
 MYFUNC<-function(nh, g)
   {
     print("pressed MYFUNC")

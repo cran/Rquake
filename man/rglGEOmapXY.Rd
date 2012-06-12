@@ -7,7 +7,11 @@
 
 }
 \usage{
-rglGEOmapXY(MAP, LIM = c(-180, -90, 180, 90), PROJ = list(), PMAT = NULL, add = TRUE, SEL = NULL, GRID = NULL, GRIDcol = 1, MAPcol = NULL, MAPstyle = NULL, border = NA, cenlon = 0, shiftlon = 0, linelty = 1, linelwd = 1, ptpch = ".", ptcex = 1, NUMB = FALSE, ...)
+rglGEOmapXY(MAP, LIM = c(-180, -90, 180, 90), PROJ = list(),
+PMAT = NULL, add = TRUE, SEL = NULL, GRID = NULL, GRIDcol = 1,
+MAPcol = NULL, MAPstyle = NULL, border = NA, cenlon = 0,
+shiftlon = 0, linelty = 1, linelwd = 1, ptpch = ".",
+ptcex = 1, NUMB = FALSE, ...)
 }
 \arguments{
  \item{MAP}{Map Structure}

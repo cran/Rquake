@@ -43,11 +43,12 @@ Jonathan M. Lees<jonathan.lees@unc.edu>
 \examples{
 
 ###  test fails
-jk = cleanWPX()
+library(RSEIS)
+jk = RSEIS::cleanWPX()
 legitWPX(jk)
 
 data(GH)
-gwpx = uwpfile2ypx(GH$pickfile)
+gwpx = RSEIS::uwpfile2ypx(GH$pickfile)
 
 legitWPX(gwpx)
 

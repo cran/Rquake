@@ -23,10 +23,10 @@ Vlocate<-function(Ldat,EQ,vel,
     MLAT = median(Ldat$lat)
     MLON = median(Ldat$lon)
     
-    proj = setPROJ(type=2, LAT0=MLAT, LON0=MLON)
+    proj = GEOmap::setPROJ(type=2, LAT0=MLAT, LON0=MLON)
 
 ####   get station X-Y values in km
-    XY = GLOB.XY(Ldat$lat, Ldat$lon, proj)
+    XY = GEOmap::GLOB.XY(Ldat$lat, Ldat$lon, proj)
 ###   add to Ldat list
     Ldat$x = XY$x
     Ldat$y = XY$y
@@ -43,7 +43,7 @@ Vlocate<-function(Ldat,EQ,vel,
         EQ$x = XY$x[wstart]
         EQ$y = XY$y[wstart] 
       }else{
-        eqxy = GLOB.XY(EQ$lat, EQ$lon, proj)
+        eqxy = GEOmap::GLOB.XY(EQ$lat, EQ$lon, proj)
         EQ$x = eqxy$x
         EQ$y = eqxy$y
       }
@@ -76,7 +76,7 @@ Vlocate<-function(Ldat,EQ,vel,
 
        }
        
-    eqLL = XY.GLOB(AQ$EQ$x, AQ$EQ$y, proj)
+    eqLL = GEOmap::XY.GLOB(AQ$EQ$x, AQ$EQ$y, proj)
     AQ$EQ$lat = eqLL$lat
     AQ$EQ$lon = eqLL$lon
     
@@ -110,7 +110,7 @@ EQ = AQ$EQ
        
        
 
-      eqLL = XY.GLOB(AQ$EQ$x, AQ$EQ$y, proj)
+      eqLL = GEOmap::XY.GLOB(AQ$EQ$x, AQ$EQ$y, proj)
     AQ$EQ$lat = eqLL$lat
     AQ$EQ$lon = eqLL$lon
     
@@ -143,7 +143,7 @@ EQ = AQ$EQ
        
 
 ###   /* if solution bad, try recovery */
-   eqLL = XY.GLOB(AQ$EQ$x, AQ$EQ$y, proj)
+   eqLL = GEOmap::XY.GLOB(AQ$EQ$x, AQ$EQ$y, proj)
     AQ$EQ$lat = eqLL$lat
     AQ$EQ$lon = eqLL$lon
     
@@ -170,7 +170,7 @@ EQ = AQ$EQ
           tolz = tolz, PLOT=PLOT)
 
 
-        eqLL = XY.GLOB(AQ$EQ$x, AQ$EQ$y, proj)
+        eqLL = GEOmap::XY.GLOB(AQ$EQ$x, AQ$EQ$y, proj)
         AQ$EQ$lat = eqLL$lat
         AQ$EQ$lon = eqLL$lon
          EQ = AQ$EQ

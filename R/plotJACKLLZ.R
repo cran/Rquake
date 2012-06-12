@@ -84,7 +84,7 @@ par(op)
   par(mfrow=c(3,1))
      
 
-  Gxy = GLOB.XY(  sta$lat   ,sta$lon , proj)
+  Gxy = GEOmap::GLOB.XY(  sta$lat   ,sta$lon , proj)
   plot(Gxy$x, Gxy$y, type='n', xlab="km", ylab="km", asp=1 )
   imageINFLUENCE(Blat, sta, proj)
   title("Station Influence Latitude")

@@ -10,15 +10,15 @@ getGAP<-function( EQ, Ldat, PLOT=FALSE)
   ###    Ldat$name[wsta]
 
   
-  proj = setPROJ(type=2, LAT0=MLAT, LON0=MLON)
-  XY = GLOB.XY(Ldat$lat[wsta],  Ldat$lon[wsta] , proj)
-  eqxy = GLOB.XY(EQ$lat, EQ$lon, proj)
+  proj = GEOmap::setPROJ(type=2, LAT0=MLAT, LON0=MLON)
+  XY = GEOmap::GLOB.XY(Ldat$lat[wsta],  Ldat$lon[wsta] , proj)
+  eqxy = GEOmap::GLOB.XY(EQ$lat, EQ$lon, proj)
 
   gang = atan2(eqxy$y-XY$y ,  eqxy$x-XY$x)
 ### subtract off the first one
   gang = gang-gang[1]
 ###  make sure nothing crosses 2pi
-  gang = fmod(gang, 2*pi)
+  gang = RPMG::fmod(gang, 2*pi)
 
   ord1 = order(gang)
 

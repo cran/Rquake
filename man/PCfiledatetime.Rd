@@ -22,7 +22,7 @@ PCfiledatetime(orgtim, tims)
 
 
 \examples{
-
+library(RSEIS)
 data(GH)
 
 g1 = getGHtime(GH)

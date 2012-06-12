@@ -41,10 +41,10 @@ S1, S2, for example.
 }
 \examples{
 
-s1 = setWPX(name="HI", phase="P", yr=2011, jd=231, hr=4, mi=3, sec = runif(5)) 
-s2 = setWPX(name="BYE", phase="P", yr=2011, jd=231, hr=4, mi=3, sec = runif(5)) 
+s1 = RSEIS::setWPX(name="HI", phase="P", yr=2011, jd=231, hr=4, mi=3, sec = runif(5)) 
+s2 = RSEIS::setWPX(name="BYE", phase="P", yr=2011, jd=231, hr=4, mi=3, sec = runif(5)) 
 
-s3 = catWPX(s1, s2)
+s3 = RSEIS::catWPX(s1, s2)
 
 s4 = OnePerSta(s3, phase = "P")
 

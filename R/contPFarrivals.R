@@ -1,5 +1,5 @@
 contPFarrivals <- function(PF, stas, proj=NULL, cont=TRUE, POINTS=TRUE, image=FALSE ,
-                            col=tomo.colors(50), gcol="black",   phase="P", add=TRUE)
+                            col=RSEIS::tomo.colors(50), gcol="black",   phase="P", add=TRUE)
   {
     ###  given a pickfile and a station file, contour arrivals
     
@@ -7,7 +7,7 @@ contPFarrivals <- function(PF, stas, proj=NULL, cont=TRUE, POINTS=TRUE, image=FA
    if(missing(cont)) cont=TRUE
    if(missing(POINTS)) POINTS=TRUE
    if(missing(image)) image=FALSE
-    if(missing(col))  col=tomo.colors(50)
+    if(missing(col))  col=RSEIS::tomo.colors(50)
 
 
     NEX = 50
@@ -54,11 +54,11 @@ contPFarrivals <- function(PF, stas, proj=NULL, cont=TRUE, POINTS=TRUE, image=FA
    #  print(arr)
     
     #  doAmap(stas)
-    if(is.null(proj))  proj = setPROJ(type=2, LAT0 =median(stas$lat) , LON0 = median(stas$lon) )
+    if(is.null(proj))  proj = GEOmap::setPROJ(type=2, LAT0 =median(stas$lat) , LON0 = median(stas$lon) )
 
     #############    convert the LATLON of stations to X-Y
     
-    XY = GLOB.XY(stas$lat, stas$lon, proj)
+    XY = GEOmap::GLOB.XY(stas$lat, stas$lon, proj)
     
     if(!add)
       {
@@ -80,7 +80,7 @@ contPFarrivals <- function(PF, stas, proj=NULL, cont=TRUE, POINTS=TRUE, image=FA
       }
 
 
-    xy = GLOB.XY(  pstas$lat[wp] , pstas$lon[wp],  proj)
+    xy = GEOmap::GLOB.XY(  pstas$lat[wp] , pstas$lon[wp],  proj)
 
                          
     ex = seq(from=min(xy$x), to=max(xy$x), length=NEX)
@@ -89,7 +89,7 @@ contPFarrivals <- function(PF, stas, proj=NULL, cont=TRUE, POINTS=TRUE, image=FA
 
      DF = cbind(x=xy$x , y=xy$y ,  z=arr)
    ##   zed  = interp(x=xy$x , y=xy$y, z=arr, ex, why, duplicate="mean" )
-     zed  = mba.surf(DF, NEX, NEX, n = 1, m = 1, h = 8, extend=FALSE)$xyz.est
+     zed  = MBA::mba.surf(DF, NEX, NEX, n = 1, m = 1, h = 8, extend=FALSE)$xyz.est
     ##  ex = zed[[1]]
     ##  why = zed[[2]]
 

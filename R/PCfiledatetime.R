@@ -10,9 +10,9 @@ PCfiledatetime<-function (orgtim, tims)
   rd = list(yr=orgtim[1],  jd=orgtim[2], hr=orgtim[3], mi=orgtim[4], sec=orgtim[5]+tims)
 }
   
-  rd = recdate(jd = rd$jd, hr = rd$hr, mi = rd$mi, sec = rd$sec, 
+  rd = RSEIS::recdate(jd = rd$jd, hr = rd$hr, mi = rd$mi, sec = rd$sec, 
     yr = rd$yr)
-  MODAY = getmoday(rd$jd, rd$yr)
+  MODAY = RSEIS::getmoday(rd$jd, rd$yr)
   gdates = paste(sep = "_", formatC(rd$yr, width = 3, flag = "0"), 
     formatC(MODAY$mo, width = 2, flag = "0"), formatC(MODAY$dom, 
                                  width = 2, flag = "0"))

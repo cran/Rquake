@@ -30,7 +30,7 @@ Qrangedatetime<-function(D)
       T1 = list(jd=D$jd[w1], hr=D$hr[w1], mi=D$mi[w1], sec=D$sec[w1], yr=D$yr[w1])
       T2 = list(jd=D$jd[w2], hr=D$hr[w2], mi=D$mi[w2], sec=D$sec[w2],  yr=D$yr[w2])
 
-      ydif = YRsecdif(T1$jd, T1$hr, T1$mi, T1$sec,  T2$jd, T2$hr, T2$mi, T2$sec,
+      ydif = RSEIS::YRsecdif(T1$jd, T1$hr, T1$mi, T1$sec,  T2$jd, T2$hr, T2$mi, T2$sec,
         D$yr[w1] ,  D$yr[w2])
       return(list(min=T1, max=T2, dif=ydif))
     }

@@ -1,6 +1,6 @@
 ReSet <- function(nh, g)
   {
-####   swig button - reset the station/channel choices for grep in Mine.seis
+####   RSEIS::swig button - reset the station/channel choices for grep in RSEIS::Mine.seis
   
     dev.set( dev.next() )
     s1 = SELstaDB(nh$IDB, sel=1, newdev=TRUE, STAY=FALSE)

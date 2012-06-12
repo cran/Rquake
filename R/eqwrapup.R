@@ -14,13 +14,13 @@ eqwrapup<-function(Ldat,
   MLAT = EQ$lat
   MLON = EQ$lon
 
-  proj = setPROJ(type=2, LAT0=MLAT, LON0=MLON)
+  proj = GEOmap::setPROJ(type=2, LAT0=MLAT, LON0=MLON)
 
-  XY = GLOB.XY(Ldat$lat, Ldat$lon, proj)
+  XY = GEOmap::GLOB.XY(Ldat$lat, Ldat$lon, proj)
 
 ###   these should be zero -
 ###  but I put this in just in case the origin is modified
-  b = GLOB.XY(EQ$lat, EQ$lon, proj)
+  b = GEOmap::GLOB.XY(EQ$lat, EQ$lon, proj)
   EQ$x = b$x
   EQ$y = b$y
 

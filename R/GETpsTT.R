@@ -19,7 +19,7 @@ GETpsTT<-function(phase, eqz=6, staz=0, delx=1, dely=1,  deltadis=6 , vel)
         udist = deltadis[wp]
         np = length(udist)
         
-        Hp = many.time1D(udist , eqz , staz[wp], length(vel$zp)  , vel$zp ,  vel$vp)
+        Hp = RSEIS::many.time1D(udist , eqz , staz[wp], length(vel$zp)  , vel$zp ,  vel$vp)
         
          dtdxp = rep(0, np)
         dtdyp =  dtdxp
@@ -45,7 +45,7 @@ GETpsTT<-function(phase, eqz=6, staz=0, delx=1, dely=1,  deltadis=6 , vel)
         udist = deltadis[ws]
         ns = length(udist)
         
-        Hs = many.time1D(udist , eqz , staz[ws], length(vel$zs)  , vel$zs ,  vel$vs)
+        Hs = RSEIS::many.time1D(udist , eqz , staz[ws], length(vel$zs)  , vel$zs ,  vel$vs)
          dtdxs = rep(0, ns)
         dtdys =  dtdxs
 

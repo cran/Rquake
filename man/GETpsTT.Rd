@@ -58,11 +58,11 @@ p1 = GH$pickfile$STAS
 loc = GH$pickfile$LOC
 
 
-proj  = setPROJ(type = 2, LAT0 =loc$lat, LON0 =  loc$lon)
+proj  = GEOmap::setPROJ(type = 2, LAT0 =loc$lat, LON0 =  loc$lon)
 
 
-XYsta = GLOB.XY(p1$lat, p1$lon, proj)
-XYq =   GLOB.XY(loc$lat, loc$lon, proj)
+XYsta = GEOmap::GLOB.XY(p1$lat, p1$lon, proj)
+XYq =   GEOmap::GLOB.XY(loc$lat, loc$lon, proj)
 
 delx = XYq$x-XYsta$x
 dely = XYq$y-XYsta$y

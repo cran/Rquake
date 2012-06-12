@@ -77,7 +77,7 @@ BLACKJACK<-function(Ldat, vel)
   ##  points(XY, pch=6)
 
 
-    BEXY = GLOB.XY(BEDS[,1], BEDS[,2], AQ$proj)
+    BEXY = GEOmap::GLOB.XY(BEDS[,1], BEDS[,2], AQ$proj)
    ## points(BEXY, pch=8, col='red')
 
 

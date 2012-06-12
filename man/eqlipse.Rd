@@ -79,12 +79,12 @@ kuality = eqwrapup(Ldat, EQ, vel, distwt = 20, verbose = TRUE )
 
  MLAT = median(Ldat$lat)
   MLON = median(Ldat$lon)
-  proj = setPROJ(type=2, LAT0=MLAT, LON0=MLON)
+  proj = GEOmap::setPROJ(type=2, LAT0=MLAT, LON0=MLON)
 
-  XYSTAS = GLOB.XY(Ldat$lat,  Ldat$lon , proj)
+  XYSTAS = GEOmap::GLOB.XY(Ldat$lat,  Ldat$lon , proj)
 
 
- eqxy = GLOB.XY(EQ$lat, EQ$lon, proj)
+ eqxy = GEOmap::GLOB.XY(EQ$lat, EQ$lon, proj)
 
 
 plot(range(c(XYSTAS$x, eqxy$x)), range(c(XYSTAS$y, eqxy$y)), type='n', asp=1, xlab="km", ylab="km" )

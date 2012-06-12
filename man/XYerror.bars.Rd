@@ -5,7 +5,8 @@
 \description{Error Bars in X and Y
 }
 \usage{
-XYerror.bars(x, y, xlo = 0, xhi = 0, ylo = 0, yhi = 0, pch = 1, col = 1, barw = 0.1, add = FALSE, ...)
+XYerror.bars(x, y, xlo = 0, xhi = 0, ylo = 0,
+yhi = 0, pch = 1, col = 1, barw = 0.1, add = FALSE, ...)
 }
 \arguments{
   \item{x}{X-values
@@ -68,7 +69,8 @@ xdown = xdown-min(xdown)+.2
 
 
 ####  example with different  error on either side:
-XYerror.bars(x, y, y-ydown, y+yup, x-xdown, x+xup,  pch = 1, col = 'brown' , barw = 0.1, add
+XYerror.bars(x, y, y-ydown, y+yup, x-xdown, x+xup,
+ pch = 1, col = 'brown' , barw = 0.1, add
 = FALSE)
 
 

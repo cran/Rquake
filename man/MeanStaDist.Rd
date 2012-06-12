@@ -25,7 +25,7 @@ Jonathan M. Lees<jonathan.lees@unc.edu>
 \seealso{setPROJ, GLOB.XY,  dist
 }
 \examples{
-
+library(RSEIS)
 data(GH)
 MeanStaDist(GH$pickfile$STAS)
 

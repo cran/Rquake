@@ -14,7 +14,7 @@ DistWeight<-function(dist, err, distwt)
 
 DistWeightLL<-function(lat, lon, elat, elon, err, distwt)
   {
-    DEL =  distaz(elat, elon, lat, lon)
+    DEL =  GEOmap::distaz(elat, elon, lat, lon)
     deltadis = DEL$dist
     wts = DistWeight(deltadis, err, distwt)
     return(wts)

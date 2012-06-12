@@ -1,9 +1,9 @@
 XYSETUP <-
 function(STAS, init, vel)
   {
-    proj = setPROJ(type=2, LAT0 =median(STAS$lat) , LON0 = median(STAS$lon) )
-    XY = GLOB.XY(STAS$lat, STAS$lon, proj)
-    gloc = GLOB.XY(init[1], init[2], proj)
+    proj = GEOmap::setPROJ(type=2, LAT0 =median(STAS$lat) , LON0 = median(STAS$lon) )
+    XY = GEOmap::GLOB.XY(STAS$lat, STAS$lon, proj)
+    gloc = GEOmap::GLOB.XY(init[1], init[2], proj)
 
     h1 = c(gloc$x, gloc$y, init[3], init[4])
     

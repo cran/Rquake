@@ -13,7 +13,7 @@ DoUWLocate<-function(LF, stas, vel,
     
     for(i in 1:length(LF))
       {
-        g1 = getpfile( LF[i] )
+        g1 = RSEIS::getpfile( LF[i] )
 
         m1 = match(g1$STAS$name, stas$name)
 
@@ -73,15 +73,15 @@ DoUWLocate<-function(LF, stas, vel,
         MLAT = median(Ldat$lat)
         MLON = median(Ldat$lon)
 
-        proj = setPROJ(type=2, LAT0=MLAT, LON0=MLON)
+        proj = GEOmap::setPROJ(type=2, LAT0=MLAT, LON0=MLON)
 
-        XY = GLOB.XY(Ldat$lat, Ldat$lon, proj)
+        XY = GEOmap::GLOB.XY(Ldat$lat, Ldat$lon, proj)
 
         wstart = which.min(Ldat$sec)
 
         EQ = list(lat=Ldat$lat[wstart], lon=Ldat$lon[wstart], z=6, t=0)
 
-        eqxy = GLOB.XY(EQ$lat, EQ$lon, proj)
+        eqxy = GEOmap::GLOB.XY(EQ$lat, EQ$lon, proj)
 
         EQ$x = XY$x[wstart]
         EQ$y = XY$y[wstart]

@@ -37,7 +37,7 @@ Jonathan M. Lees<jonathan.lees@unc.edu>
 \examples{
 
 \dontrun{
- XY = GLOB.XY(pstas$lat, pstas$lon, proj)
+ XY = GEOmap::GLOB.XY(pstas$lat, pstas$lon, proj)
     elcor = rep(0, length(pstas$lat))
     
     DZ = pstas$z - mean(stas$z)
@@ -49,7 +49,7 @@ Jonathan M. Lees<jonathan.lees@unc.edu>
     XY$phase = pstas$phase
     XY$sec = pstas$sec
     
-    eqXY = GLOB.XY(sol[1], sol[2], proj)
+    eqXY = GEOmap::GLOB.XY(sol[1], sol[2], proj)
     res =  EQXYresid(XY, vel=v , h1=c(eqXY$x, eqXY$y, sol[2],sol[4]) , PLOT=FALSE)
     }
 

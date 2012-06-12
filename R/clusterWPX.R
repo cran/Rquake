@@ -7,7 +7,7 @@ clusterWPX<-function(twpx, tol=200, PLOT=FALSE)
 
 ####     if all the pix are within tol, just return
 
-####jj  = swig(GH, sel=GH$COMPS=="V", PADDLAB="YPIX" ); twpx = jj$g$WPX
+####jj  = RSEIS::swig(GH, sel=GH$COMPS=="V", PADDLAB="YPIX" ); twpx = jj$g$WPX
     ##  clusterWPX(twpx)
     
 
@@ -17,7 +17,7 @@ clusterWPX<-function(twpx, tol=200, PLOT=FALSE)
     twpx = twpx[nona,]
     
     A1T = Qrangedatetime(twpx)
-    s1 = secdifL(A1T$min,  twpx)
+    s1 = RSEIS::secdifL(A1T$min,  twpx)
     
 
     D1 = dist(s1)

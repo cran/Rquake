@@ -1,5 +1,5 @@
 RQ <- function(nh, g, idev=3)
-  {   ####  relocation button for swig
+  {   ####  relocation button for RSEIS::swig
    
     ## 
 
@@ -27,7 +27,7 @@ RQ <- function(nh, g, idev=3)
         if(any(nona))
           {
             
-            twpx =  deleteWPX(twpx, which(nona))
+            twpx =  RSEIS::deleteWPX(twpx, which(nona))
           }
 
         uphase = unique( twpx$phase )
@@ -50,7 +50,7 @@ RQ <- function(nh, g, idev=3)
 
         
         A1T = Qrangedatetime(twpx)
-        s1 = secdifL(A1T$min,  twpx)
+        s1 = RSEIS::secdifL(A1T$min,  twpx)
 
         nh$pickfile =  INITpickfile(stas=nh$sta, src=NULL, WPX=twpx)
 

@@ -6,7 +6,7 @@ HiJACK<-function(lps, sta, vel)
 
   for(ipi in 1:length(lps))
     {
-      g1 = getpfile(lps[ipi], stafile = NULL)
+      g1 = RSEIS::getpfile(lps[ipi], stafile = NULL)
 
       MA = match(g1$STAS$name, sta$name)
 

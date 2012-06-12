@@ -25,7 +25,7 @@ data(wu_coso.vel)
 data(fuj1.vel)
 data(LITHOS.vel)
 
-Comp1Dvels(c("ASW.vel","wu_coso.vel",  "fuj1.vel" , "LITHOS.vel"  ))
+RSEIS::Comp1Dvels(c("ASW.vel","wu_coso.vel",  "fuj1.vel" , "LITHOS.vel"  ))
 
 
 }
