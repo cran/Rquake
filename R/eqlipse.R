@@ -43,7 +43,7 @@ eqlipse<-function(x,y , cov,   wcols = c(1,2) , dof=2, pct=0.05, ... )
 
    ##   if(is.null(border)){ bcol="black" }
   
-  polygon(x+rmore[,1],y+rmore[,2], col=NA, ... );
+  polygon(x+rmore[,1],y+rmore[,2], ... );
 
 }
 

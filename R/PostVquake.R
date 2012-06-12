@@ -1,16 +1,16 @@
-PostVquake<-function(jimmy, GX, GY, XY, proj)
+PostVquake<-function(MANYeq, GX, GY, XY, proj, add=FALSE, ... )
   {
 
     zcols = c('red', 'blue', 'purple', 'cyan' )
 
   
-    ZEDS = matrix(ncol=3, nrow=length(jimmy))
+    ZEDS = matrix(ncol=3, nrow=length(MANYeq))
     
 
-    for(i in 1:length(jimmy))
+    for(i in 1:length(MANYeq))
       {
-        zip = jimmy[[i]]$Ksolutions
-        ZEDS[i, ] = c(jimmy[[i]]$EQ$lat,jimmy[[i]]$EQ$lon, jimmy[[i]]$EQ$z ) 
+        zip = MANYeq[[i]]$Ksolutions
+        ZEDS[i, ] = c(MANYeq[[i]]$EQ$lat,MANYeq[[i]]$EQ$lon, MANYeq[[i]]$EQ$z ) 
         
         for(iz in 1:length(zip))
           {
@@ -23,20 +23,22 @@ PostVquake<-function(jimmy, GX, GY, XY, proj)
       }
 
 
-
+    if(!add)
+      {
     plot(GX, GY, type='n', xlab="km" , ylab="km" , asp=1)
     points(XY, pch=6)
+  }
     ZEXY = GLOB.XY(ZEDS[,1], ZEDS[,2], proj)
     points(ZEXY, pch=8, col='red')
 
 
 
-    for(i in 1:length(jimmy))
+    for(i in 1:length(MANYeq))
       {
-        KOV =  jimmy[[i]]$ERR$cov[2:4, 2:4]
-        ndf = jimmy[[i]]$ERR$ndf
+        KOV =  MANYeq[[i]]$ERR$cov[2:4, 2:4]
+        ndf = MANYeq[[i]]$ERR$ndf
         
-        eqlipse(ZEXY$x[i], ZEXY$y[i] , KOV,   wcols = c(1,2) , dof=ndf, border="blue"  )
+        eqlipse(ZEXY$x[i], ZEXY$y[i] , KOV,   wcols = c(1,2) , dof=ndf,  ...  )
       }
     
     

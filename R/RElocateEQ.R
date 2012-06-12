@@ -1,4 +1,5 @@
-RElocateEQ<-function(lps, sta, vel, cont=TRUE, sleep=0.5, mapfun=NULL, add=FALSE, proj=NULL, xlim=NULL, ylim=NULL)
+RElocateEQ<-function(lps, sta, vel, cont=TRUE,
+                     sleep=0.5, mapfun=NULL, add=FALSE, proj=NULL, xlim=NULL, ylim=NULL)
   {
 ##################
 ############    given a set of pickfiles,
@@ -6,15 +7,17 @@ RElocateEQ<-function(lps, sta, vel, cont=TRUE, sleep=0.5, mapfun=NULL, add=FALSE
 
     if(missing(mapfun)) { mapfun=NULL  }
 
+  #####  whatmap = mapfun
 
+    
     if(!is.null(mapfun))
       {
-       ### print("assigning whatmap" )
-        assign("whatmap", mapfun, envir = .GlobalEnv)
+   #####    ### print("assigning whatmap" )
+        assign("whatmap", mapfun )
         
       }
     else
-      {
+     {
         whatmap = NULL
 
       }
@@ -70,7 +73,7 @@ RElocateEQ<-function(lps, sta, vel, cont=TRUE, sleep=0.5, mapfun=NULL, add=FALSE
 
         if(cont)
           {
-            contPFarrivals(g1, sta, proj=AQ$proj,cont=FALSE, POINTS=FALSE,
+            contPFarrivals(g1, sta, proj=AQ$proj,cont=TRUE, POINTS=FALSE,
                            image=TRUE , col=grcol,     phase="P", add=TRUE)
           }
 

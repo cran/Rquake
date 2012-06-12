@@ -11,7 +11,13 @@ imageINFLUENCE<-function(B, sta, proj)
 
      mval = as.vector(B$stats[3, ])
 
-     zed  = interp(x=gxy$x , y=gxy$y, z=mval, ex, why, duplicate="mean" )
+    DF = cbind(x=gxy$x , y=gxy$y ,  z=mval)
+ zed  = mba.surf(DF, NEX, NEX, n = 8, m = 8, h = 8, extend=TRUE)$xyz.est
+     ex = zed[[1]]
+    why = zed[[2]]
+
+    
+     ## zed  = interp(x=gxy$x , y=gxy$y, z=mval, ex, why, duplicate="mean" )
 
      image(zed, col=col , add=TRUE)
      

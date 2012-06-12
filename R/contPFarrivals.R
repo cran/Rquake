@@ -87,10 +87,12 @@ contPFarrivals <- function(PF, stas, proj=NULL, cont=TRUE, POINTS=TRUE, image=FA
     why = seq(from=min(xy$y), to=max(xy$y), length=NEX)
 
 
-    
-    zed  = interp(x=xy$x , y=xy$y, z=arr, ex, why, duplicate="mean" )
+     DF = cbind(x=xy$x , y=xy$y ,  z=arr)
+   ##   zed  = interp(x=xy$x , y=xy$y, z=arr, ex, why, duplicate="mean" )
+     zed  = mba.surf(DF, NEX, NEX, n = 1, m = 1, h = 8, extend=FALSE)$xyz.est
+    ##  ex = zed[[1]]
+    ##  why = zed[[2]]
 
-    
     if(image) image(zed, col=col , add=TRUE)
     if(POINTS)
       {
@@ -99,6 +101,11 @@ contPFarrivals <- function(PF, stas, proj=NULL, cont=TRUE, POINTS=TRUE, image=FA
       }
 
     
-    if(cont)  contour(zed, add=TRUE)
+    if(cont)
+      {
+        contour(zed, add=TRUE,  col='blue' )
+    ##    contour(mzed, add=TRUE, col='black' )
+        
+      }
     return(proj)
   }

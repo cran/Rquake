@@ -5,10 +5,10 @@
 \description{Plotting error ellipsoids of many events
 }
 \usage{
-PostVquake(jimmy, GX, GY, XY, proj)
+PostVquake(MANYeq, GX, GY, XY, proj, add=FALSE, ...)
 }
 \arguments{
-  \item{jimmy}{List of earthquakes following Vlocate
+  \item{MANYeq}{List of earthquakes following Vlocate
 }
   \item{GX}{X-bounds for plot
 }
@@ -17,7 +17,13 @@ PostVquake(jimmy, GX, GY, XY, proj)
   \item{XY}{station locations in km
 }
   \item{proj}{projection list
-}
+  }
+  \item{add}{logical; if TRUE, add to existing plot (DEFAULT=FALSE)
+  }
+  \item{\dots}{ graphical parameters for plotting (see par)   } 
+
+
+  
 }
 \details{Plots the event and the error ellipsoids
 }
