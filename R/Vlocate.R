@@ -16,6 +16,7 @@ Vlocate<-function(Ldat,EQ,vel,
     ##  this code includes a projection to cartesian coordinates.
 
     BADSOLUTION = FALSE
+    Ksolutions = vector(mode="list")
 
 #######   set up input list #########
 ####  set up the projection to local UTM coordinates
@@ -64,7 +65,9 @@ Vlocate<-function(Ldat,EQ,vel,
       RESMAX = c(0,0),
       tolx =   tolx,
       toly = toly ,
-      tolz = tolz, PLOT=FALSE)
+      tolz = tolz, PLOT=PLOT)
+
+    Ksolutions[[1]] = AQ$guesses
 
     if(is.null(AQ$EQ))
        {
@@ -93,7 +96,10 @@ EQ = AQ$EQ
       RESMAX =RESMAX ,
       tolx =   tolx,
       toly = toly ,
-      tolz = tolz, PLOT=FALSE)
+      tolz = tolz, PLOT=PLOT)
+
+
+     Ksolutions[[2]] = AQ$guesses
 
        if(is.null(AQ$EQ))
        {
@@ -126,6 +132,7 @@ EQ = AQ$EQ
       toly = toly ,
       tolz = tolz, PLOT=PLOT)
 
+   Ksolutions[[3]] = AQ$guesses
 
      if(is.null(AQ$EQ))
        {
@@ -160,20 +167,21 @@ EQ = AQ$EQ
           STOPPING = STOPPING,
           tolx =   tolx,
           toly = toly ,
-          tolz = tolz, PLOT=FALSE)
+          tolz = tolz, PLOT=PLOT)
 
 
         eqLL = XY.GLOB(AQ$EQ$x, AQ$EQ$y, proj)
         AQ$EQ$lat = eqLL$lat
         AQ$EQ$lon = eqLL$lon
          EQ = AQ$EQ
-        
+         Ksolutions[[4]] = AQ$guesses
+
       }
 
 ########  finally wrap up and get error bars
     wup = eqwrapup(Ldat, EQ, vel, distwt=distwt, verbose=FALSE)
     
-    return(list(EQ=EQ, ERR=wup, its=AQ$its ))
+    return(list(EQ=EQ, ERR=wup, its=AQ$its ,  proj=proj, Ksolutions=Ksolutions ))
     
 
   }

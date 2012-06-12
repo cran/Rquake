@@ -20,13 +20,17 @@ XYlocate<-function(Ldat,EQ,vel,
     ##  this code includes a projection to cartesian coordinates.
 ##########  EARTHQUAKE Location Program
     
-    
-
-    
+    guesses = vector(mode='list')
+    kguess = 0 
     NUMrows = length(Ldat$x)
     
      if(is.null(Ldat$cor)) { Ldat$cor =rep(0, NUMrows) }
       Ldat$err[Ldat$err<=0]  =  0.05
+
+
+      kguess = kguess+1
+            guesses[[kguess]] = list(x=EQ$x, y=EQ$y, z=EQ$z, t=EQ$t)
+    
 
     for(K in 1:maxITER)
       {
@@ -130,7 +134,10 @@ XYlocate<-function(Ldat,EQ,vel,
 
 ###  update the solution:
         OLD = list(x=EQ$x, y=EQ$y)
-        if(PLOT) points(EQ$x, EQ$y, col='red' , cex=0.6, pch=8)
+        if(PLOT)
+          {
+            points(EQ$x, EQ$y, col='red' , cex=0.6, pch=8)
+          }
         
         EQ$t = EQ$t+h2[1]
         EQ$x = EQ$x+h2[2]
@@ -147,17 +154,20 @@ XYlocate<-function(Ldat,EQ,vel,
           }
 
   ####
+        kguess = kguess+1
+        guesses[[kguess]] = list(x=EQ$x, y=EQ$y, z=EQ$z, t=EQ$t) 
         if(PLOT)
           {
             arrows(OLD$x, OLD$y, EQ$x, EQ$y, length=0.1, col='blue')
             
             points(EQ$x, EQ$y, col='red' , cex=0.6, pch=8)
+            
           }
-
- 
+        
+        
       }
 #############  END LOOP
-
+    
 
     wts = rep(1, length=NUMrows)
 
@@ -188,8 +198,11 @@ XYlocate<-function(Ldat,EQ,vel,
     resids = (Observed-(PredictedTT-cors))
     rms = sqrt(mean(resids^2))
     wrms = sqrt(mean((wheights*resids)^2))
+
+
+    guesses= matrix(unlist(guesses), ncol=4, byrow=TRUE)
     
-    return(list(EQ=EQ, its=K, rms=rms, wrms=wrms, used=kindex))
+    return(list(EQ=EQ, its=K, rms=rms, wrms=wrms, used=kindex, guesses=guesses  ))
 
 
   }

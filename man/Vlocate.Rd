@@ -73,6 +73,8 @@ Vlocate(Ldat,EQ,vel,
   \item{EQ}{Hypocenter lcoation}
   \item{ERR}{Error Analysis}
   \item{its}{number of iteration}
+  \item{Ksolutions}{list of matrices, each with intermediate x,y,z,t locations}
+  
 }
 \references{Lee and Stewart
 }

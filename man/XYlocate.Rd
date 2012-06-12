@@ -60,6 +60,8 @@ XYlocate(Ldat, EQ, vel, maxITER = 10, distwt = 10, lambdareg = 100, FIXZ
   \item{rms}{rms residual}
   \item{wrms}{wheighted rms residual}
   \item{used}{vector, index of used equations}
+  \item{guesses}{list of x,y,z,t intermediate locations when converging }
+  
 }
 
 \author{
@@ -118,29 +120,55 @@ vel= VELMOD1D
     Ldat$x = XY$x
     Ldat$y = XY$y
        wstart = which.min(Ldat$sec)
-        EQ = list(lat=Ldat$lat[wstart], lon=Ldat$lon[wstart], z=6,
-t=Ldat$sec[wstart] )
-        EQ$x = XY$x[wstart]
-        EQ$y = XY$y[wstart] 
 
+
+
+EQ = list(x=XY$x[wstart], y=XY$y[wstart], z=6, t=Ldat$sec[wstart] )
+
+      
  maxITER = 7
 ###print(EQ)
     AQ = XYlocate(Ldat,EQ,vel, 
       maxITER = maxITER,
-      distwt = 10,
-      lambdareg =100 ,
+      distwt = 1,
+      lambdareg =10 ,
       FIXZ = FALSE,
       REG = TRUE,
       WTS = TRUE,
       STOPPING = TRUE,
-      RESMAX = c(0.5,0.5),
+      RESMAX = c(0.1,0.1),
       tolx =   0.001,
       toly = 0.001 ,
-      tolz = 0.005, PLOT=FALSE)
+      tolz = 0.5, PLOT=FALSE)
 
+########  update the new location
+
+AXY = XY.GLOB(AQ$EQ$x, AQ$EQ$y, proj)
+AQ$EQ$lat = AXY$lat
+AQ$EQ$lon = AXY$lon
+if(AQ$EQ$lon>180) { AQ$EQ$lon = AQ$EQ$lon-360 }
+
+
+plot(c(Ldat$x, AQ$EQ$x) , c(Ldat$y,AQ$EQ$y), type='n' , xlab="km",
+ylab="km" )
+
+points(Ldat$x, Ldat$y, pch=6)
+
+points(AQ$EQ$x, AQ$EQ$y, pch=8, col='red')
+
+points(EQ$x, EQ$y, pch=4, col='blue')
+
+
+legend("topright", pch=c(8,4, 6), col=c("red", "blue", "black"),
+ legend=c("Final location", "Initial guess", "Station"))
 
 
 print(AQ)
+
+EQ$x = 10
+EQ$y = 2
+
+
 
 
 

@@ -1,25 +1,49 @@
-contPFarrivals <- function(PF, stas, proj=NULL, image=FALSE , phase="G", add=TRUE)
+contPFarrivals <- function(PF, stas, proj=NULL, cont=TRUE, POINTS=TRUE, image=FALSE ,
+                            col=tomo.colors(50), gcol="black",   phase="P", add=TRUE)
   {
     ###  given a pickfile and a station file, contour arrivals
     
     if(missing(proj)) proj = NULL
+   if(missing(cont)) cont=TRUE
+   if(missing(POINTS)) POINTS=TRUE
+   if(missing(image)) image=FALSE
+    if(missing(col))  col=tomo.colors(50)
+
 
     NEX = 50
 
     if(length(PF$STAS$sec)<1)
       {
+        print("ERROR: not enough station observations, no contouring")
         return(NULL)
       }
 
     
     pstas  = PF$STAS
-
+    
+    if(missing( phase))
+      {
+        ##  if phase is not specified try P, S, G
+        if(any(pstas$phase=="P")) { phase = "P" }
+        
+        if(!any(pstas$phase=="P"))
+          {
+            if(any(pstas$phase=="S")) { phase = "S" }
+          }
+        
+        if(!any(pstas$phase=="P") &  !any(pstas$phase=="S" ) )
+          {
+             phase = "G"
+          }
+        
+        
+      }
     
     w1 = which.min(pstas$sec)
 
     if(length(w1)<1) { return(NULL) }
     
-    wp = which(pstas$phase==phase )
+    wp = which(pstas$phase==phase &   !is.na(pstas$lat) &  !is.na(pstas$lon)   )
 
     if(length(wp)<2) { return(NULL) }
     
@@ -33,23 +57,48 @@ contPFarrivals <- function(PF, stas, proj=NULL, image=FALSE , phase="G", add=TRU
     if(is.null(proj))  proj = setPROJ(type=2, LAT0 =median(stas$lat) , LON0 = median(stas$lon) )
 
     #############    convert the LATLON of stations to X-Y
+    
     XY = GLOB.XY(stas$lat, stas$lon, proj)
-    if(!add) plot(XY, pch=6, xlab="km", ylab="km" , cex=.6 )
+    
+    if(!add)
+      {
+        plot(XY, pch=6, xlab="km", ylab="km" , cex=.6 )
+
+      }
+    
    
    
     msta = match(stan, stas$name)
 
-    ex = seq(from=min(XY$x), to=max(XY$x), length=NEX)
-    why = seq(from=min(XY$y), to=max(XY$y), length=NEX)
-    zed  = interp(x=XY$x[msta] , y=XY$y[msta], z=arr, ex, why)
+    ########   remove any non-station match
+    msta = msta[!is.na(msta)]
+    
+    if(length(msta)<3)
+      {
+        print("ERROR: not enough matching stations, no contouring")
+        return(NULL)
+      }
 
-   
-     if(image) image(zed, col=tomo.colors(50) , add=TRUE)
 
- text(XY, labels=stas$name, pos=3, cex=.6)
- points(XY$x[msta] , XY$y[msta], col='red', cex=1.1)
+    xy = GLOB.XY(  pstas$lat[wp] , pstas$lon[wp],  proj)
+
+                         
+    ex = seq(from=min(xy$x), to=max(xy$x), length=NEX)
+    why = seq(from=min(xy$y), to=max(xy$y), length=NEX)
+
 
     
-    contour(zed, add=TRUE)
+    zed  = interp(x=xy$x , y=xy$y, z=arr, ex, why, duplicate="mean" )
+
+    
+    if(image) image(zed, col=col , add=TRUE)
+    if(POINTS)
+      {
+        text(XY, labels=stas$name, pos=3, cex=.6)
+        points(XY$x[msta] , XY$y[msta], col='red', cex=1.1)
+      }
+
+    
+    if(cont)  contour(zed, add=TRUE)
     return(proj)
   }

@@ -7,7 +7,8 @@ Contour plot of arrival times recorded in
 a pickfile list.
 }
 \usage{
-contPFarrivals(PF, stas, proj = NULL, image = FALSE,  phase="G", add = TRUE)
+contPFarrivals(PF, stas, proj=NULL, cont=TRUE, POINTS=TRUE, image=FALSE ,
+             col=tomo.colors(50), gcol="black",   phase="P", add=TRUE)
 }
 \arguments{
   \item{PF}{Pickfile list in RSEIS format
@@ -15,9 +16,16 @@ contPFarrivals(PF, stas, proj = NULL, image = FALSE,  phase="G", add = TRUE)
   \item{stas}{station list
 }
   \item{proj}{projection from GEOmap
-}
+  }
+  \item{cont}{logical, add contour to plot}
+  \item{POINTS}{logical, add mark up (stations)  to plot}
+  
+  
 \item{image}{logical, add image to plot
 }
+ \item{col}{color palette for image}
+ \item{gcol}{color for contour lines}
+
 \item{phase}{character,  phase to contour
 }
 \item{add}{logical, TRUE=add to existing plot
@@ -39,11 +47,21 @@ Jonathan M. Lees<jonathan.lees@unc.edu>
 \seealso{doAmap
 }
 \examples{
-\dontrun{
 
-contPFarrivals(nh$pickfile, nh$sta, proj=NULL)
+data(GH)
+data(coso_sta_LLZ)
+sta = coso_sta_LLZ
+g1 = GH$pickfile
 
-}
+
+proj = setPROJ(type=2, LAT0 =median(sta$lat) , LON0 = median(sta$lon))
+
+
+grcol =  grey(seq(from=0.3, to=0.95, length=50))
+  contPFarrivals(g1, sta, proj=proj,cont=TRUE, POINTS=TRUE,
+                           image=TRUE , col=grcol,     phase="P",
+add=FALSE )
+
 
 }
 \keyword{misc}
