@@ -5,7 +5,8 @@
 \description{BoxPlot Jackknife of station locations
 }
 \usage{
-plotJACKLLZ(hjack, sta, proj = NULL,  PLOT=0, PS=FALSE)
+plotJACKLLZ(hjack, sta, proj = NULL,  PLOT=0, PS=FALSE,
+    fbase="jack", width =c(10, 5) , height = c(8, 8))
 }
 \arguments{
   \item{hjack}{Output of hijack
@@ -18,7 +19,11 @@ plotJACKLLZ(hjack, sta, proj = NULL,  PLOT=0, PS=FALSE)
 if plot =1 plot only boxplot, if plot=2 plot only map. Default=0
 }
  \item{PS}{postscript output device, default=FALSE
-}
+ }
+  \item{fbase}{basename for output png files }
+ \item{ width}{2-vector of width of plots output (inches) }
+ \item{ height}{2-vector of height of plots output (inches) }
+
 }
 \details{
   takes the output of the HiJack function and extracts the pseudovalues
@@ -31,7 +36,11 @@ if plot =1 plot only boxplot, if plot=2 plot only map. Default=0
   \item{Y}{influence of lat
 }
   \item{Z}{influence of depth
-}
+  }
+  \item{files}{character vector of the names of the files output
+  }
+
+  
 }
 \references{
   Iversen, E. S., and J. M. Lees (1996), A statistical technique for

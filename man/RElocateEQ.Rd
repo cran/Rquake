@@ -6,7 +6,7 @@
 }
 \usage{
 RElocateEQ(lps, sta, vel, cont = TRUE,
-sleep = 0.5, mapfun = NULL, add = FALSE,
+sleep = 0.5, mapfun = NULL, PLOT = TRUE ,
  proj = NULL, xlim = NULL, ylim = NULL)
 }
 \arguments{
@@ -22,7 +22,7 @@ sleep = 0.5, mapfun = NULL, add = FALSE,
 }
   \item{mapfun}{mapping function
 }
-  \item{add}{logical, TRUE=add to existing plot
+  \item{PLOT}{logical, TRUE=plot relocation sequence
 }
   \item{proj}{projection list
 }

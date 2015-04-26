@@ -1,5 +1,5 @@
 RElocateEQ<-function(lps, sta, vel, cont=TRUE,
-                     sleep=0.5, mapfun=NULL, add=FALSE, proj=NULL, xlim=NULL, ylim=NULL)
+                     sleep=0.5, mapfun=NULL, PLOT=TRUE, proj=NULL, xlim=NULL, ylim=NULL)
   {
 ##################
 ############    given a set of pickfiles,
@@ -68,27 +68,30 @@ RElocateEQ<-function(lps, sta, vel, cont=TRUE,
           tolz = 0.05, maxITER = c(7,5,7,4) , RESMAX = c(0.1, 0.1),  PLOT=FALSE)
 
         
+        if(PLOT==TRUE)
+          {
             plotEQ(Ldat, AQ, add=FALSE, prep=TRUE, proj=proj, xlim=xlim, ylim=ylim )
 
 
-        if(cont)
-          {
-            contPFarrivals(g1, sta, proj=AQ$proj,cont=TRUE, POINTS=FALSE,
-                           image=TRUE , col=grcol,     phase="P", add=TRUE)
+            if(cont)
+              {
+                contPFarrivals(g1, sta, proj=AQ$proj,cont=TRUE, POINTS=FALSE,
+                               image=TRUE , col=grcol,     phase="P", add=TRUE)
+              }
+
+            if(!is.null(whatmap))
+              {
+### print("mapping")
+                whatmap(AQ$proj)
+
+              }
+
+            
+            plotEQ(Ldat, AQ, add=TRUE)
+            Sys.sleep(sleep)
           }
-
-        if(!is.null(whatmap))
-          {
-           ### print("mapping")
-            whatmap(AQ$proj)
-
-          }
-
-        
-        plotEQ(Ldat, AQ, add=TRUE)
-
         Qout[[ipi]] = AQ
-        Sys.sleep(sleep)
+        
       }
 
     invisible(Qout)
