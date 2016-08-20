@@ -40,10 +40,8 @@ Jonathan M. Lees<jonathan.lees@unc.edu>
 \seealso{eqwrapup
 }
 \examples{
-
-
-
-require(RSEIS)
+\dontrun{
+library(RSEIS)
 data(GH)
 data(wu_coso.vel)
 vel = wu_coso.vel
@@ -96,5 +94,6 @@ KOV = kuality$cov[2:4, 2:4]
 
 eqlipse(eqxy$x, eqxy$y , KOV,   wcols = c(1,2) , dof=kuality$ndf, border="blue"  )
 
+}
 }
 \keyword{misc}

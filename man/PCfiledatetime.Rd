@@ -22,6 +22,8 @@ PCfiledatetime(orgtim, tims)
 
 
 \examples{
+
+\dontrun{
 library(RSEIS)
 data(GH)
 
@@ -30,7 +32,7 @@ g2 = unlist(g1)
 
 PCfiledatetime(g2, 1)
 
-
+}
 
 }
 \keyword{misc}

@@ -19,10 +19,14 @@ Qrangedatetime(D)
 \author{Jonathan M. Lees<jonathan.lees@unc.edu>}
 
 \examples{
+
+\dontrun{
 library(RSEIS)
 data(GH)
 
 Qrangedatetime(GH$info)
+
+}
 
 
 }

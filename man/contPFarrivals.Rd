@@ -47,6 +47,8 @@ Jonathan M. Lees<jonathan.lees@unc.edu>
 \seealso{doAmap
 }
 \examples{
+
+\dontrun{
 library(RSEIS)
 data(GH)
 data(coso_sta_LLZ)
@@ -62,6 +64,6 @@ grcol =  grey(seq(from=0.3, to=0.95, length=50))
                            image=TRUE , col=grcol,     phase="P",
 add=FALSE )
 
-
+}
 }
 \keyword{misc}

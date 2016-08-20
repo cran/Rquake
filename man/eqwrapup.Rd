@@ -62,7 +62,8 @@ Jonathan M. Lees<jonathan.lees@unc.edu>
 }
 \examples{
 
-require(RSEIS)
+\dontrun{
+library(RSEIS)
 data(GH)
 data(wu_coso.vel)
 vel = wu_coso.vel
@@ -96,7 +97,7 @@ EQ$t = EQ$sec
 kuality = eqwrapup(Ldat, EQ, vel, distwt = 20, verbose = TRUE )
 
 names(kuality)
-
+}
 
 
 

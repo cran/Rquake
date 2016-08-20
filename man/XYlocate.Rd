@@ -84,6 +84,7 @@ Jonathan M. Lees<jonathan.lees@unc.edu>
 \seealso{Vlocate
 }
 \examples{
+\dontrun{
 library(RSEIS)
 data(GH)
 
@@ -171,7 +172,7 @@ print(AQ)
 EQ$x = 10
 EQ$y = 2
 
-
+}
 
 
 

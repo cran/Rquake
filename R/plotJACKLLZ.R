@@ -1,6 +1,6 @@
 plotJACKLLZ<-function(hjack, sta, proj=NULL, PLOT=0, PS=FALSE, fbase="jack", width = c(10, 5), height = c(8,8)  )
 {
-###  there are 2 possible plot created eath with a different default size
+###  there are 2 possible plots created, each with a different default size
 
   ###  if plot = {0,1,2}
 #######  plot the output of HiJACK
@@ -63,7 +63,8 @@ Blat = boxplot(YEYEB, plot=FALSE)
   Blon = boxplot(XEYEB, plot=FALSE)
  
   Bz = boxplot(ZEYEB, plot=FALSE)
-
+  fn1=NULL
+  fn2=NULL
   if(PS==FALSE)
     {
   fn1=NA
@@ -74,7 +75,8 @@ Blat = boxplot(YEYEB, plot=FALSE)
     {
       
       if(PS==TRUE)
-        {
+          {
+        
           fn1=paste(fbase,"1.png", sep="" )
           JPNG(file=fn1, width=width[1], height=height[1] )
         }

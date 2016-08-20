@@ -90,6 +90,8 @@ Jonathan M. Lees<jonathan.lees@unc.edu>
 \seealso{XYlocate, Klocate, DoRLocate
 }
 \examples{
+
+\dontrun{
 library(RSEIS)
 data(GH)
 
@@ -134,7 +136,7 @@ wstart = which.min(Ldat$sec)
       tolx =   0.01,
       toly = 0.01 ,
       tolz = 0.05, maxITER = c(7,5,7,4) , RESMAX = c(0.1, 0.1),  PLOT=FALSE)
-
+}
 
 
 }

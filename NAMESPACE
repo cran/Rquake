@@ -5,4 +5,10 @@ import(GEOmap)
 importFrom(minpack.lm, nls.lm) 
 importFrom(MBA, mba.surf)
 importFrom(rgl,rgl.open , par3d, points3d, lines3d)
-importFrom(cda, rgl.ellipsoids)
+importFrom("grDevices", "dev.list", "dev.new", "dev.next", "dev.off",
+             "dev.set", "grey", "png", "rgb", "trans3d")
+importFrom("graphics", "arrows", "boxplot", "bxp", "contour", "image",
+             "lines", "locator", "par", "plot", "points", "polygon",
+             "segments", "text", "title")
+importFrom("stats", "cutree", "dist", "hclust", "median", "qt", "var")
+importFrom("utils", "write.csv")

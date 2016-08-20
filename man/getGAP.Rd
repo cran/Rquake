@@ -31,7 +31,6 @@ Jonathan M. Lees<jonathan.lees@unc.edu>
 }
 \examples{
 
-require(GEOmap)
 
 set.seed(0)
 

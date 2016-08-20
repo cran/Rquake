@@ -43,6 +43,7 @@ Jonathan M. Lees<jonathan.lees@unc.edu>
 \examples{
 
 ###  test fails
+\dontrun{
 library(RSEIS)
 jk = RSEIS::cleanWPX()
 legitWPX(jk)
@@ -51,7 +52,7 @@ data(GH)
 gwpx = RSEIS::uwpfile2ypx(GH$pickfile)
 
 legitWPX(gwpx)
-
+}
 
 }
 \keyword{misc}

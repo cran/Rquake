@@ -60,7 +60,7 @@ if(add==FALSE)
     rgl::par3d(windowRect=c(0, 0, 600, 600) )
    }
 
- cda::rgl.ellipsoids(POSq, SIZq
+       rgl.ellipsoids(POSq, SIZq
                        , ANGq, col="gold")
 
     

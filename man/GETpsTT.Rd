@@ -40,6 +40,7 @@ Jonathan M. Lees<jonathan.lees@unc.edu>
 }
 \examples{
 
+\dontrun{
 library(RSEIS)
 library(GEOmap)
 
@@ -70,7 +71,7 @@ dists = sqrt(delx^2+dely^2)
 
 G1 = GETpsTT(p1$phase, eqz=loc$z, staz=0, delx=delx, dely=dely,  deltadis=dists , vel)
 
-
+}
   
 
 }
