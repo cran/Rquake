@@ -4,7 +4,6 @@ import(RSEIS)
 import(GEOmap)
 importFrom(minpack.lm, nls.lm) 
 importFrom(MBA, mba.surf)
-importFrom(rgl,rgl.open , par3d, points3d, lines3d)
 importFrom("grDevices", "dev.list", "dev.new", "dev.next", "dev.off",
              "dev.set", "grey", "png", "rgb", "trans3d")
 importFrom("graphics", "arrows", "boxplot", "bxp", "contour", "image",

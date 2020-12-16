@@ -19,13 +19,28 @@ XYlocate<-function(Ldat,EQ,vel,
 ###  Earthquake location program for local earthquakes.
     ##  this code includes a projection to cartesian coordinates.
 ##########  EARTHQUAKE Location Program
-    
+
+#### first check to see the required input  data is complete:
+
+      ##########  if VERBOSE = TRUE, the program output is very wordy
+      VERBOSE = FALSE
+
+      
+      if(!checkLOCATEinput(Ldat, EQ))
+          {
+              cat('STOP:\n')
+              cat('in XYlocate has bad data.\n')
+              return(NULL)
+          }
+
+      
+      
     guesses = vector(mode='list')
     kguess = 0 
     NUMrows = length(Ldat$x)
     
      if(is.null(Ldat$cor)) { Ldat$cor =rep(0, NUMrows) }
-      Ldat$err[Ldat$err<=0]  =  0.05
+      Ldat$err[Ldat$err<=0]  =  0.01
 
 
       kguess = kguess+1
@@ -56,8 +71,29 @@ XYlocate<-function(Ldat,EQ,vel,
         
         G1 = GETpsTT(Ldat$phase, eqz=EQ$z, staz=0, delx=delx, dely=dely,  deltadis=deltadis , vel)
 
-        kindex = Rowz2Keep(Ldat, EQ,  G1,  RESMAX)
+        if(VERBOSE){
+            cat(paste('#######    TT\n'))
+            cat(G1$TT, sep=' ')
+            cat('\n')
 
+            cat(paste('#######   EQ.t\n'))
+            cat(EQ$t, sep=' ')
+            cat('\n')
+            cat('########## \n')
+
+        }
+
+        ##########  we need this to determine which rows are legit:
+        kindex = Rowz2Keep(Ldat, EQ,  G1,  RESMAX)
+        if(VERBOSE)
+            {
+            cat(paste('#######    kindex\n'))
+            cat(kindex, sep=' ')
+            cat('\n')
+        }
+        
+
+        
         PredictedTT = EQ$t + G1$TT[kindex]
         Derivs = G1$Derivs[kindex, ]
 
@@ -74,14 +110,22 @@ XYlocate<-function(Ldat,EQ,vel,
         if(neqns<2)
           {
 
-            cat(paste("############## BIG Problems: bad ROWZ"), sep="\n")
-         #####     cat(paste(RESMAX), sep="\n")
+              cat(paste("############## BIG Problems: bad ROWZ: number of eqns<2 "), sep="\n")
+              cat(paste('K=', K), sep="\n")
+               cat(paste('kindex\n', kindex), sep="\n")
+              cat('#######  wheights\n')
+              cat( wheights, sep="\n")
+               cat('#######  cors\n')
+              cat( cors, sep="\n")
+              cat(RHS, sep="\n")
+              
+              cat(paste(RESMAX), sep="\n")
             
-         #####     cat(paste(kindex), sep="\n")
+             cat(paste(kindex), sep="\n")
             
-          #####  print(data.frame(Ldat))
-           #####  testTT(Ldat,EQ, stas , vel)
-          #####  print(ROWZ)
+           print(data.frame(Ldat))
+           ##   testTT(Ldat,EQ, stas , vel)
+           print(ROWZ)
              return(list(EQ=NULL, its=NULL, rms=NULL, wrms=NULL))
  
 
@@ -103,7 +147,7 @@ XYlocate<-function(Ldat,EQ,vel,
 
         if(any(!is.finite(ROWZ)))
           {
-            cat(paste("############## BIG Problems: bad ROWZ"), sep="\n")
+            cat(paste("############## BIG Problems: bad ROWZ: non finite data values"), sep="\n")
            ##### print(data.frame(Ldat))
            #####  testTT(Ldat,EQ, stas , vel)
            ##### print(ROWZ)
@@ -201,7 +245,9 @@ XYlocate<-function(Ldat,EQ,vel,
 
 
     guesses= matrix(unlist(guesses), ncol=4, byrow=TRUE)
-    
+
+      ##### this for later use.
+      EQ$sec = EQ$t
     return(list(EQ=EQ, its=K, rms=rms, wrms=wrms, used=kindex, guesses=guesses  ))
 
 

@@ -22,13 +22,14 @@ euler_passive(phi, theta, psi)
 }
 
 \author{
-Jonathan M. Lees<jonathan.lees@unc.edu>
+Jonathan M. Lees<jonathan.lees@unc.edu>,
+Baptiste Auguie<baptiste.auguie@gmail.com>
 }
 
 \seealso{rgl.ellipsoid
 }
 \examples{
-
+options(rgl.useNULL = TRUE)
 phi=30*pi/180 ; theta= 20*pi/180; psi = 6*pi/180
 rr = euler_passive(phi,theta,psi)
 

@@ -48,7 +48,7 @@ Vlocate<-function(Ldat,EQ,vel,
         EQ$y = eqxy$y
       }
 
-
+    if( !checkLOCATEinput(Ldat, EQ) ) { cat(' Vlocate has bad/missing data.\n') ;  return(NULL) }
 ################### crude estimate  iterations  
 
 ###     /* fix depth for initial entry to locath */
@@ -180,7 +180,7 @@ EQ = AQ$EQ
 
 ########  finally wrap up and get error bars
     wup = eqwrapup(Ldat, EQ, vel, distwt=distwt, verbose=FALSE)
-    
+    #######  the EQ returned is the new location
     return(list(EQ=EQ, ERR=wup, its=AQ$its ,  proj=proj, Ksolutions=Ksolutions ))
     
 

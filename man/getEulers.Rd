@@ -30,7 +30,7 @@ Jonathan M. Lees<jonathan.lees@unc.edu>
 \seealso{ROTcovQUAKE
 }
 \examples{
-
+options(rgl.useNULL = TRUE)
 R = matrix( runif(9), ncol=3)
 
 getEulers(R)
